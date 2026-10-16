@@ -1,0 +1,19 @@
+// Title:   BridgeAgent loader (LunexLoader family) 2026-10 - hashes, payload server, PDFWKRNL.sys
+// Report:  reports/bridgeagent/2026-10-16-acb4fdd8eab4/report.md
+// Product: Elastic ES|QL
+// Status:  From static analysis; not tested on telemetry. Network indicators were NOT contacted.
+//          6e8b49cf... is a legitimate signed AMD driver: a load outside AMD firmware tooling is
+//          high severity but not proof of this family.
+FROM logs-endpoint.events.*
+| WHERE process.hash.sha256 IN ("acb4fdd8eab403dd309015ff8d73334ce7fb1656a627ae837804e59a1b20005a",
+                                "c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766",
+                                "06f434695f93d7fd11eeff71358ff69fed79d310a66d993bbcc4ff979c117c90")
+   OR file.hash.sha256 IN ("acb4fdd8eab403dd309015ff8d73334ce7fb1656a627ae837804e59a1b20005a",
+                           "6e8b49cf70bf854e8c59c7d27cefa89406caf8978461190dabb86dafcd8554e1",
+                           "c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766",
+                           "06f434695f93d7fd11eeff71358ff69fed79d310a66d993bbcc4ff979c117c90")
+   OR dll.hash.sha256 == "6e8b49cf70bf854e8c59c7d27cefa89406caf8978461190dabb86dafcd8554e1"
+   OR destination.ip == "107.175.82.242"
+   OR (process.name == "curl.exe" AND process.command_line LIKE "*Microsoft-Symbol-Server*")
+| STATS events = COUNT(*), first = MIN(@timestamp), last = MAX(@timestamp)
+    BY host.name, process.name, process.hash.sha256

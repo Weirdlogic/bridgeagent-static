@@ -1,0 +1,50 @@
+== build
+  0x1405948c6  bridge-agent-v5.1.4-chromium-unified+c456d75d7e819abdf3e1a00d484354fa33465475bf95a66e8da8961a88007197
+  0x14059afc8  c456d75d7e819abdf3e1a00d484354fa33465475bf95a66e8da8961a880071972026-10-06T11:21:13.6484576Z
+  0x1406172a4  IT_solutions.pdb
+== default server (written to configuration.server_ip when missing)
+  0x1401f3ae9  93.152.213[.]149
+== endpoints (plaintext, joined to https:// or wss:// + server_ip)
+   /api/agent/ca-recovery
+   /api/agent/connect
+   /api/agent/enroll
+   /api/agent/media
+   /api/agent/sync
+   /api/agent/transfers
+== job-type immediates (job dispatcher)
+  0x1400ef769  file.lis
+  0x1400ef788  file.sta
+  0x1400ef7a7  file.mov
+  0x1400ef7c6  file.cop
+  0x1400ef7e5  file.has
+  0x1400ef808  agent.re
+  0x1400ef82c  file.dow
+  0x1400ef850  managed.
+  0x1400ef8dd  file.dri
+  0x1400ef901  file.ren
+  0x1400ef925  file.del
+  0x1400ef949  install.
+  0x1400efc3e  managed.
+  0x1400efd2e  file.mkd
+  0x1400efde2  script.e
+  0x1400efe06  managed.
+  0x1400eff04  software
+  0x1400eff28  command.
+  0x1401352b4  managed.
+  0x140254b12  software
+== persistence / host artefacts (plaintext)
+  0x14059d775  HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+  0x14059ce41  Local\BridgeAgent-
+  0x14059cb00  C:\ProgramData\BridgeAgent
+  0x14059ca69  BridgeAgent.exe
+  0x14059d85f  Bridge Agent.cmd
+  0x14059d808  Dropbox.exe
+  0x14059ebf9  BridgeBackstage-
+  0x14059ae15  bridge-agent.log
+  0x14059cb36  agent.db
+  0x1405920fc  root-ca.crt
+  0x14059b1b9  .heartbeat.json
+  0x14059d172  runtime.lifecycle.json
+  0x14059b1c9  --supervisor-pid
+  0x14059bd6f  --adopt-runtime
+  0x14059d74c  " --supervisor

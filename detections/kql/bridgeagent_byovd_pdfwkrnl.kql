@@ -1,0 +1,51 @@
+// Title:   BYOVD EDR killer using AMD PDFWKRNL.sys (BridgeAgent loader / LunexLoader) - behaviour
+// Report:  reports/bridgeagent/2026-10-16-acb4fdd8eab4/report.md
+// Product: Microsoft Defender XDR advanced hunting
+// ATT&CK:  T1068, T1543.003, T1562.001, T1548.002, T1105
+// Status:  From static analysis. Not tested on telemetry. Expect the EDR to go quiet after the
+//          driver loads (its callbacks are removed), so the early steps matter most:
+//          symbol download, Defender exclusions, driver service creation.
+// Logic:   Score one device over 30 minutes; 2 or more distinct steps is worth a look.
+let window = 30m;
+let userDirs = dynamic([@"\Users\Public\", @"\Windows\Temp\", @"\AppData\Local\Temp\"]);
+let exts = dynamic([".exe", ".sys", ".dll", ".ps1", ".bat", ".cmd"]);
+union
+// 1. curl.exe fetching kernel symbols with a fake symsrv User-Agent (loader 0x140019a6d)
+(DeviceProcessEvents
+ | where FileName =~ "curl.exe"
+ | where ProcessCommandLine has "Microsoft-Symbol-Server" and ProcessCommandLine has "download/symbols"
+ | extend Step = "symbol-download"),
+// 2. Defender extension exclusions for executables and drivers added together (loader adds all six over WMI)
+(DeviceRegistryEvents
+ | where RegistryKey has @"Windows Defender\Exclusions\Extensions"
+ | where ActionType in ("RegistryValueSet", "RegistryKeyCreated")
+ | where RegistryValueName in~ (exts)
+ | extend Step = "defender-extension-exclusion"),
+(DeviceRegistryEvents
+ | where RegistryKey has @"Windows Defender\Exclusions\Paths"
+ | where RegistryValueName has_any (@"C:\Users\Public", @"C:\Windows\Temp")
+ | extend Step = "defender-path-exclusion"),
+// 3. Kernel driver service whose image sits in a user-writable folder (random 8-12 char name + .sys)
+(DeviceRegistryEvents
+ | where RegistryKey has @"\SYSTEM\" and RegistryKey has @"\Services\" and RegistryValueName =~ "ImagePath"
+ | where RegistryValueData endswith ".sys" and RegistryValueData has_any (userDirs)
+ | extend Step = "driver-service-user-path"),
+// 4. PDFWKRNL.sys loaded, by name or by its version info, from anywhere
+(DeviceEvents
+ | where ActionType == "DriverLoad"
+ | where FileName =~ "PDFWKRNL.sys" or SHA256 == "6e8b49cf70bf854e8c59c7d27cefa89406caf8978461190dabb86dafcd8554e1"
+        or (FolderPath has_any (userDirs) and FileName endswith ".sys")
+ | extend Step = "driver-load"),
+// 5. payload pulled with curl into C:\Users\Public, then launched hidden
+(DeviceProcessEvents
+ | where FileName =~ "curl.exe" and ProcessCommandLine has "--connect-timeout 10" and ProcessCommandLine has @"C:\Users\Public\"
+ | extend Step = "payload-download"),
+(DeviceProcessEvents
+ | where (FileName =~ "msiexec.exe" and ProcessCommandLine has @"C:\Users\Public\" and ProcessCommandLine has "/qn")
+      or (FileName =~ "cmd.exe" and ProcessCommandLine has "start" and ProcessCommandLine has @"C:\Users\Public\")
+ | extend Step = "payload-launch")
+| summarize Steps = dcount(Step), StepList = make_set(Step), First = min(Timestamp), Last = max(Timestamp),
+            Procs = make_set(InitiatingProcessFileName, 10), Hashes = make_set(InitiatingProcessSHA256, 10)
+          by DeviceId, DeviceName, bin(Timestamp, window)
+| where Steps >= 2
+| order by Steps desc

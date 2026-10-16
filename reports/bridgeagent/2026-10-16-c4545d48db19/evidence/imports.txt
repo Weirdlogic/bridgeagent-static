@@ -1,0 +1,28 @@
+# Import table (objdump -p), non-kernel32 DLLs
+00000000 
+CRYPT32.dll: CertEnumCertificatesInStore CertDuplicateStore CertAddCertificateContextToStore CertGetCertificateChain CertDuplicateCertificateContext CryptUnprotectData CryptProtectData CryptStringToBinaryA CertCreateCertificateContext CertOpenStore CertFreeCertificateChain CertDuplicateCertificateChain CertCloseStore CertVerifyCertificateChainPolicy CertFreeCertificateContext 00000000 
+ADVAPI32.dll: SystemFunction036 00000000 
+RstrtMgr.DLL: RmEndSession RmGetList RmRegisterResources RmStartSession 00000000 
+USER32.dll: EmptyClipboard SetClipboardData IsClipboardFormatAvailable SetThreadDesktop CloseDesktop GetForegroundWindow GetWindowThreadProcessId GetClassNameW IsWindow IsWindowVisible GetWindowRect EnumDesktopWindows GetDpiForWindow SetThreadDpiAwarenessContext PrintWindow GetAncestor SendMessageTimeoutW AttachThreadInput GetThreadDesktop GetGUIThreadInfo PostMessageW BringWindowToTop SetActiveWindow SetFocus ScreenToClient GetClipboardSequenceNumber GetDC ReleaseDC GetWindowTextLengthW GetWindowTextW SendInput MapVirtualKeyW GetKeyboardState SetKeyboardState OpenClipboard RegisterSuspendResumeNotification GetSystemMetrics FindWindowExW CreateDesktopW PeekMessageW CreateWindowExW AddClipboardFormatListener GetClipboardData CloseClipboard GetClipboardOwner RemoveClipboardFormatListener DestroyWindow ChildWindowFromPointEx OpenInputDesktop 00000000 
+CFGMGR32.dll: CM_Unregister_Notification CM_Register_Notification 00000000 
+ole32.dll: CoCreateInstance CoUninitialize CoInitializeEx 00000000 
+OLEAUT32.dll: <none> <none> <none> 00000000 
+WTSAPI32.dll: WTSSendMessageW WTSRegisterSessionNotification WTSUnRegisterSessionNotification 00000000 
+VERSION.dll: VerQueryValueW GetFileVersionInfoSizeW GetFileVersionInfoW 00000000 
+WINTRUST.dll: WinVerifyTrust 00000000 
+GDI32.dll: DeleteObject SelectObject CreateDIBSection StretchBlt SetStretchBltMode DeleteDC CreateCompatibleDC 00000000 
+IPHLPAPI.DLL: NotifyIpInterfaceChange 00000000 
+bcryptprimitives.dll: ProcessPrng 00000000 
+secur32.dll: FreeCredentialsHandle AcquireCredentialsHandleA ApplyControlToken InitializeSecurityContextW DeleteSecurityContext FreeContextBuffer AcceptSecurityContext QueryContextAttributesW DecryptMessage EncryptMessage 00000000 
+ws2_32.dll: freeaddrinfo ioctlsocket shutdown connect recv getsockopt closesocket WSAGetLastError send WSASend setsockopt getpeername getsockname WSAIoctl WSAStartup WSACleanup bind getaddrinfo WSASocketW 00000000 
+bcrypt.dll: BCryptGenRandom 00000000 
+ntdll.dll: NtReadFile NtCreateNamedPipeFile NtOpenFile NtWriteFile NtCancelIoFileEx RtlNtStatusToDosError NtDeviceIoControlFile NtCreateFile 00000000 
+
+
+# Header
+Time/Date		Tue Oct  6 14:22:25 2026
+MajorSubsystemVersion	6
+MinorSubsystemVersion	0
+Subsystem		00000002	(Windows GUI)
+DllCharacteristics	00008160
+# CodeView: RSDS GUID b3ba06fa-2b2a-4740-9313-89939dc3f5b2 age 1, PDB IT_solutions.pdb (file offset 0x615a8c)

@@ -1,0 +1,32 @@
+/*
+  Title:   BridgeAgent loader (LunexLoader family) - symsrv-spoofing curl, then a driver from a
+           user-writable folder, then curl into C:\Users\Public
+  Report:  reports/bridgeagent/2026-10-16-acb4fdd8eab4/report.md
+  Product: Elastic Security (EQL) on Elastic Defend data
+  ATT&CK:  T1068, T1543.003, T1562.001, T1105
+  Status:  DRAFT - from static analysis; not validated on telemetry. Elastic's own driver
+           (elastic-endpoint-driver.sys) is on the loader's target list, so events after the
+           driver load may stop. The first two steps are the reliable part; consider alerting
+           on them alone (see the second query). Check how your Defend version records
+           kernel driver loads (library vs driver events) before relying on step 2.
+*/
+sequence by host.id with maxspan=15m
+  [process where host.os.type == "windows" and event.type == "start" and
+     process.name : "curl.exe" and
+     process.command_line : "*Microsoft-Symbol-Server*" and process.command_line : "*download/symbols*"]
+  [library where host.os.type == "windows" and
+     dll.name : "*.sys" and
+     (dll.hash.sha256 == "6e8b49cf70bf854e8c59c7d27cefa89406caf8978461190dabb86dafcd8554e1" or
+      dll.pe.original_file_name : "PDFWKRNL.sys" or
+      dll.path : ("?:\\Users\\Public\\*", "?:\\Windows\\Temp\\*", "?:\\Users\\*\\AppData\\Local\\Temp\\*"))]
+  [process where host.os.type == "windows" and event.type == "start" and
+     process.name : "curl.exe" and process.command_line : "*-o \"?:\\Users\\Public\\*"]
+
+/*
+  Second query (alert on its own): curl.exe posing as the Microsoft symbol client.
+  Real symbol downloads come from symchk/dbghelp/WinDbg, not from curl with this User-Agent.
+*/
+process where host.os.type == "windows" and event.type == "start" and
+  process.name : "curl.exe" and
+  process.command_line : "*-A Microsoft-Symbol-Server/*" and
+  process.command_line : "*msdl.microsoft.com/download/symbols*"

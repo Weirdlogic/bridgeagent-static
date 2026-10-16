@@ -1,0 +1,44 @@
+/*
+  Title:   BridgeAgent backdoor - Run-key persistence written by reg.exe for BridgeAgent.exe --supervisor
+  Report:  reports/bridgeagent/2026-10-16-c4545d48db19/triage.md
+  Product: Elastic Security (EQL) on Elastic Defend data
+  ATT&CK:  T1547.001
+  Status:  DRAFT - from static analysis; not validated on telemetry.
+           The agent copies itself to %LOCALAPPDATA%\Programs\Bridge\BridgeAgent.exe and runs
+           reg.exe ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v BridgeAgent /t REG_SZ
+           /d "\"<path>\" --supervisor" /f  (sample 0x140247192..0x140247374).
+*/
+process where host.os.type == "windows" and event.type == "start" and
+  process.name : "reg.exe" and
+  process.args : "ADD" and process.command_line : "*\\CurrentVersion\\Run*" and
+  process.command_line : "*BridgeAgent*" and process.command_line : "*--supervisor*"
+
+/*
+  Second query: the agent's supervisor/runtime pair. The supervisor (--supervisor) starts the
+  runtime with --supervisor-pid <pid>, and a restarted supervisor adopts it with --adopt-runtime.
+*/
+process where host.os.type == "windows" and event.type == "start" and
+  (process.executable : "?:\\Users\\*\\AppData\\Local\\Programs\\Bridge\\BridgeAgent.exe" or
+   process.args : ("--supervisor-pid", "--adopt-runtime") or
+   process.hash.sha256 == "c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766")
+
+/*
+  Third query: the agent opening a real browser profile (hidden "Backstage" desktop) or a shell.
+  Browser launches carry --user-data-dir= and --profile-directory=; shells are cmd.exe /D and
+  powershell.exe -NoLogo -NoProfile -NonInteractive.
+*/
+process where host.os.type == "windows" and event.type == "start" and
+  (process.parent.name : "BridgeAgent.exe" or
+   process.parent.executable : "?:\\Users\\*\\AppData\\Local\\Programs\\Bridge\\BridgeAgent.exe") and
+  process.name : ("chrome.exe", "msedge.exe", "brave.exe", "opera.exe", "browser.exe", "firefox.exe",
+                  "cmd.exe", "powershell.exe", "taskkill.exe", "tar.exe", "msiexec.exe")
+
+/*
+  Fourth query: install then C2. The agent writes its own copy to the canonical path, then
+  connects to its server on 443 (default 93.152.213.149, overridable via agent.db).
+*/
+sequence by host.id with maxspan=10m
+  [file where host.os.type == "windows" and event.type in ("creation", "change") and
+     file.path : "?:\\Users\\*\\AppData\\Local\\Programs\\Bridge\\BridgeAgent.exe"]
+  [network where host.os.type == "windows" and
+     process.name : "BridgeAgent.exe" and destination.port == 443]

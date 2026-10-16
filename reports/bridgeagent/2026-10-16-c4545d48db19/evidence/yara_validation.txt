@@ -1,0 +1,50 @@
+# YARA-X yara-x-cli 1.21.0, 2026-10-15T23:07:00Z
+## matches on the sample
+BridgeAgent_Backdoor_Strings samples/c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766/sample.bin
+0x5900c3:26:$panic: !!! BRIDGE AGENT PANIC !!!
+0x5930c6:14:$build: bridge-agent-v
+0x59b641:18:$mutex: Local\\BridgeAgent-
+0x590ecd:20:$hdr1: X-Bridge-Server-Time
+0x590ee1:19:$hdr2: X-Bridge-Auth-Error
+0x59d3f9:16:$desk: BridgeBackstage-
+0x5963a1:19:$carec: bridge-ca-recovery-
+0x592b49:28:$auth: auth=ed25519_timestamp_nonce
+0x5941e8:28:$owned: Bridge Agent-owned Backstage
+0x59deae:22:$opera: BRIDGE_BACKSTAGE_OPERA
+0x59e233:22:$opera: BRIDGE_BACKSTAGE_OPERA
+0x58ff56:34:$consent: An authorized Bridge administrator
+0x59bf5b:23:$run: startup.hkcu_run.ensure
+0x59b31a:28:$legacy: legacy-migration-v1.complete
+0x592268:18:$api1: /api/agent/connect
+0x5929a8:17:$api2: /api/agent/enroll
+0x595e76:17:$api2: /api/agent/enroll
+0x593bbf:16:$api3: /api/agent/media
+0x596416:22:$api4: /api/agent/ca-recovery
+0x615aa4:16:$pdb: IT_solutions.pdb
+BridgeAgent_Backdoor_Code samples/c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766/sample.bin
+0xeeb69:10:$j_list: 48 b8 66 69 6c 65 2e 6c 69 73
+0xeeb88:10:$j_stat: 48 b8 66 69 6c 65 2e 73 74 61
+0xeeba7:10:$j_move: 48 b8 66 69 6c 65 2e 6d 6f 76
+0xeebc6:10:$j_copy: 48 b8 66 69 6c 65 2e 63 6f 70
+0xeebe5:10:$j_hash: 48 b8 66 69 6c 65 2e 68 61 73
+0xeec2c:10:$j_down: 48 b8 66 69 6c 65 2e 64 6f 77
+0xeec08:10:$j_rst: 48 b8 61 67 65 6e 74 2e 72 65
+0xeec50:10:$j_mgd: 48 b8 6d 61 6e 61 67 65 64 2e
+0xef03e:10:$j_mgd: 48 b8 6d 61 6e 61 67 65 64 2e
+0xef206:10:$j_mgd: 48 b8 6d 61 6e 61 67 65 64 2e
+0x1346b4:10:$j_mgd: 48 b9 6d 61 6e 61 67 65 64 2e
+0xef328:10:$j_cmd: 48 b8 63 6f 6d 6d 61 6e 64 2e
+BridgeAgent_Backdoor_DefaultC2_93_152_213_149 samples/c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766/sample.bin
+0x1f2ee9:10:$hi: 48 b9 2e 32 31 33 2e 31 34 39
+0x1f2ef7:10:$lo: 48 b9 39 33 2e 31 35 32 2e 32
+
+## sweep: files / (rule,file) non-match lines / match lines
+samples files=242 nonmatch=723 matches=3
+~/.local/opt files=38437 nonmatch=115311 matches=0
+/usr/lib/python3 files=5831 nonmatch=17493 matches=0
+/usr/lib/python3.14 files=1314 nonmatch=3942 matches=0
+/usr/bin files=1282 nonmatch=3846 matches=0
+# samples/ matches are the 3 rules on c4545d48.../sample.bin only (loader acb4fdd8... does not match)
+BridgeAgent_Backdoor_Strings samples/c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766/sample.bin
+BridgeAgent_Backdoor_Code samples/c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766/sample.bin
+BridgeAgent_Backdoor_DefaultC2_93_152_213_149 samples/c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766/sample.bin

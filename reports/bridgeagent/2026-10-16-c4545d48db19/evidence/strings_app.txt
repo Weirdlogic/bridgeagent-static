@@ -1,0 +1,1365 @@
+# Application strings from strings -a -n 5 (lines 56050..57420 of the dump), cargo/rustc paths removed.
+# Untrusted sample content: evidence only. The sample's own text (consent prompts, log lines) is quoted as data.
+protocolrolepidpeer_pidinstance_idupdated_at_msactionruntime_pidrequest_idrequested_at_msmessage_idtypedevice_idconnection_idsent_atiddeployment_idpackage_idstatusprogressattemptcreated_atupdated_atkey_idserver_ipnonceissued_atexpires_atca_pemca_sha256signatureenrollment_tokeninstallation_idownercountryosagent_versionpublic_keycapabilitiescapture_textredact_sensitivejobsacknowledged_message_idsserver_timeforensicsoccurred_atcategoryuser_namesession_idapplicationprocess_idwindow_titlecontrol_nametext_valueredaction_kindthis pair has already been serializedstruct LifecycleMarker with 5 elements
+struct Envelope with 8 elements
+struct Job with 11 elements
+struct CARecoveryResponse with 9 elements
+struct EnrollResponse with 1 element
+struct RoleHeartbeat with 6 elements
+struct SyncResponse with 4 elements
+fewer elements in map
+value is missingpath contains invalid UTF-8 characters
+"connection.websocket.server_close=
+websocket writer task failed: 
+all branches are disabled and there is no else branch
+websocket frame write deadline exceeded
+websocket protocol write deadline exceeded
+websocket critical write deadline exceeded
+liveness.response.written type=
+ causal_id=
+ connection=
+ generation=
+websocket outbox write deadline exceeded0
+websocket critical writer queue closed
+media websocket write deadline exceeded
+media websocket read failed: 
+$media websocket reader task failed: 
+remote.media.coalesced count=
+Bridge access request;An authorized Bridge administrator is requesting access to 
+I in the private Backstage workspace.
+Allow this one-time access request?
+prompt_failedapproveddeniedexpiredwindow_close_pendingprofile_lock_release_timeout
+runtime-
+CA recovery signature verification failed
+supervisor
+!!! BRIDGE AGENT PANIC !!!
+Panic: 
+Location: 
+!!! END PANIC !!!
+INSERT OR IGNORE INTO received_jobs(id,job_type,payload,status,attempt,created_at,updated_at) VALUES(?,?,?,'received',?,?,?)
+job.duplicate id=
+job.persisted id=
+ type=
+job.receivedinvalid job assignment
+agent.initialization.beginpackagescacheappslogsopening agent databasedatabase.open.readyenrollment.existing_identityroot-ca.crttls.ca.missing signed_recovery_required=truetls.ca.local_present recovery_mode=on_certificate_failureenrollment.required
+existing identity has no local CA and signed CA recovery failed
+proc_
+connection_supervisormedia_connection_supervisorjob_workerreconciliation_workerstartup_repair_workermanaged_apps_workerremote_sessions_workerforensics_workerruntime_heartbeat_worker
+agent.worker.plan count=
+	 workers=
+agent.workers.scheduled
+agent.stop.requested phase=worker_readinessagent.worker.ready name=forensics_workeragent.workers.startedagent.worker.readiness_failed name=forensics_worker reason=channel_closedNagent.worker.readiness_failed name=forensics_worker reason=timeout timeout_ms=
+forensics worker exited before readiness
+forensics worker did not become ready within startup deadline
+agent.shutdown.complete
+agent.stop.requested$agent.worker.unexpected_exit worker=
+monitored worker 
+ exited unexpectedly
+HTTPS synchronization is already in progress/api/agent/syncmessages
+https://
+?wait_seconds=
+sync.request messages=
+ wait_seconds=
+X-Device-IDX-TimestampX-NonceX-SignatureX-Bridge-Server-TimeX-Bridge-Auth-Error
+bridge_auth_error=
+ status=
+ body=
+HTTP status 
+ body=
+8forensics.config.applied source=https_sync capture_text=
+ redact_sensitive=
+ protect_credentials=true
+sync.response jobs=
+ acknowledgements=
+job.execution.begin id=
+ type=
+runningjob.started
+unsupported job typejob_type
+machine-wide MSI installation requires elevationrequires_elevationremove_filesfile.
+restartrequested_atsupervised!lifecycle.restart.authorized job=
+job_id
+Windows5.1.4
+complianceUnknowncollected_atagent.inventory
+SELECT id,job_type,payload,status,attempt,created_at,updated_at FROM received_jobs WHERE status NOT IN ('succeeded','failed') ORDER BY created_at
+job.recovery.count=
+log path lock poisoned	starting 
+ in ConPTY
+	starting 
+https://
+Upload-Offsetclipboard transaction lock is poisoned
+missing payload field 
+Content-Typeapplication/octet-stream
+managed_app_idexecution_typerevision_idfilenameapp_bridge_autosha256-software.auto_bridge.already_active revision=
+ path=
+installed_pathprocess_started_at
+process_identitysupervisioncanonical_activemanagedalready_active0
+allow_multiple_instances*software.multiple_instances.requested app=
+  mode=single_supervised_instance
+stageprevious_stoppedtermination_confirmedtermination_method
+staging-
+currentprevioustar.exe-xf-C
+archive extraction failed: 
+entrypointconfigured executable was not found after stagingconfigured executable resolves outside the staged application directory0
+stagedmoving previous application revisionactivating staged applicationstart_after_deployarguments
+activated
+download_path
+artifact.cache.hit job=
+ hash=
+.part
+bytes
+verified
+artifact.download.verified job=
+ bytes=
+ hash=
+$artifact SHA-256 mismatch: expected 
+, received 
+!artifact size mismatch: expected 
+, received 
+opening process 
+ for identity verification
+reading process 
+	 identity
+verified_pid
+runtime
+clipboardtextprocessesuser_activitydevices(forensics.worker.startup_retry delay_ms=
+ clipboard=
+ text=
+ processes=
+ activity=
+	 devices=
+!forensics.worker.ready clipboard=
+ text=
+ processes=
+ activity=
+	 devices=
+ capture_text=
+ redact_sensitive=
+Network interfaceNetwork interface configuration changedgenerationnotify_ip_interface_changechangesconnectivity_changedWindows resumed from a suspended power statesuspend_resume_notificationresumed"forensics.worker.health clipboard=
+ text=
+ processes=
+ activity=
+	 devices=
+ capture_text=
+ redact_sensitive=
+forensics.clipboard.restart reason=collector_exitWindows event collector restartedforensics_watchdogcollector_restartedforensics.text.restart reason=collector_exitText collector restartedforensics.process.restart reason=collector_exitProcess collector restartedforensics.activity.restart reason=collector_exitUser activity collector restartedforensics.device.restart reason=collector_exitUSB device collector restarted
+missing server IP'signed CA recovery is rate limited for 
+ seconds
+!tls.ca_recovery.complete changed=
+ ca_sha256=
+ retrying=true
+UPDATE managed_apps SET status='failed',updated_at=? WHERE id=?
+healthybootstrap_handoffreported_atagent.managed_statusmanaged application path missingManaged Appdesired_state
+INSERT INTO managed_apps(id,package_id,revision_id,name,payload,executable_path,desired_state,allow_multiple_instances,pid,process_started_at,process_identity,process_supervision,status,restart_count,last_restart,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?, 'healthy',0,?,?) ON CONFLICT(id) DO UPDATE SET package_id=excluded.package_id,revision_id=excluded.revision_id,name=excluded.name,payload=excluded.payload,executable_path=excluded.executable_path,desired_state=excluded.desired_state,allow_multiple_instances=excluded.allow_multiple_instances,pid=excluded.pid,process_started_at=excluded.process_started_at,process_identity=excluded.process_identity,process_supervision=excluded.process_supervision,status='healthy',restart_count=0,last_restart=excluded.last_restart,updated_at=excluded.updated_at
+/api/agent/connect
+wss://
+#connection.websocket.handshake url=
+ device=
+ nonce_chars=
+websocket handshake deadline exceeded&connection.websocket.connected status=
+agent.hello
+managed_apps.reconcile.error=
+remote session lock poisoned
+remote.session.start session=
+ kind=
+ mode=
+backstage
+remote.session.error session=
+ error=
+session.error
+remote.session.end session=
+creating temporary CA file 
+%atomically replacing Bridge Agent CA 
+ with 
+System32reg.exe/reg:64/reg:32queryHKLM\Software\Microsoft\Office\ClickToRun\Configuration/vInstallationPathREG_SZ
+root/Office16/OUTLOOK.EXEOffice16/OUTLOOK.EXETelegram Desktop/Telegram.exePrograms/Telegram Desktop/Telegram.exeMicrosoft Office/root/Office16/OUTLOOK.EXEPrograms/Slack/slack.exePrograms/signal-desktop/Signal.exeexodus/Exodus.exePrograms/exodus/Exodus.exePrograms/Ledger Live/Ledger Live.exeLedger Live/Ledger Live.exePrograms/Trezor Suite/Trezor Suite.exeTrezor Suite/Trezor Suite.exePrograms/Electrum/electrum.exeElectrum/electrum.exePrograms/Sparrow/Sparrow.exeSparrow/Sparrow.exePrograms/atomic/Atomic Wallet.exeatomic/Atomic Wallet.exePrograms/Guarda/Guarda.exeGuarda/Guarda.exeMonero GUI Wallet/monero-wallet-gui.exePrograms/Monero GUI Wallet/monero-wallet-gui.exeBitcoin/bitcoin-qt.exeenrollment.bootstrap.begin
+enrollment.server=
+!tls.ca.bootstrap_verified sha256=
+https://
+install_
+identity.profile owner=
+	 country=
+enrollment.request.send
+/api/agent/enroll
+enrollment.response.status=
+enrollment failed: 
+device_name
+enrollment.complete device=
+interpretercommandworking_directorytimeout_secondspowershellcmd
+unsupported interpreter 
+cmd.exepowershell.exe-NoLogo-NoProfile-NonInteractive-Command
+command exited with code 
+remote session command channel closedconnection.supervisor.begin auth=ed25519_timestamp_nonce liveness=bidirectional reconnect=full_jitter
+Hconnection.retry_accelerated reason=network_interface_change generation=
+>connection.retry_accelerated reason=windows_resume generation=
+ power_event=
+connection.websocket.attempt
+connection.websocket.error=
+tls.ca_recovery.trigger reason=certificate_validation_failureconnection.websocket.retry_after_ca_recovery3connection.websocket.retry_after_ca_recovery.error=
+tls.ca_recovery.error=
++connection.websocket.closed stable_seconds=
+!connection.websocket.final_error=
+connection.https_fallback.triggered independent=trueconnection.https_fallback.already_pendingconnection.https_fallback.unavailable
+connection.retry_wait_ms=
+ cap_ms=
+ failures=
+ server_reachable=
+uia_text_patternuia_legacy_value
+decoding server envelopestale server connection generation receivedserver message arrived before connection welcome
+protocol.unhandled type=
+remote.command.ignored error=
+remote.close.ignored error=
+remote.detach.ignored error=
+remote.attach.rejected error=
+remote.open.rejected session=
+ error=
+outbox.ack message=
+challenge_idcausal_idconnection_generationagent.liveness.control_probe_ackagent.liveness.ack
+process_instance_idagent_buildbridge-agent-v5.1.4-chromium-unified+c456d75d7e819abdf3e1a00d484354fa33465475bf95a66e8da8961a88007197
+received_atinvalid liveness challenge identity2forensics.config.applied source=push capture_text=
+ redact_sensitive=
+ protect_credentials=true
+/forensics/capture_text/forensics/redact_sensitive5forensics.config.applied source=welcome capture_text=
+ redact_sensitive=
+ protect_credentials=true
+protocol.welcome connection=
+ generation=
+ process_instance_id=
+	 payload=
+server envelope identity or connection id mismatch
+unsupported protocol 
+liveness.response.queued type=
+ causal_id=
+ connection=
+ generation=
+ process_instance_id=
+success_codes
+installer exited with code 
+&identity.recovery.complete new_device=
+identity.recovery.error=
+periodicwebsocket_failure
+reconciliation.begin reason=
+ independent=true
+reconciliation.complete reason=
+reconciliation.error reason=
+ error=
+identity.recovery.trigger reason=server_unknown_devicemanaged job lock poisoned
+startup.repair.complete
+startup.repair.error=
+SELECT id,payload,executable_path,desired_state,pid,process_started_at,process_identity,process_supervision,restart_count,last_restart FROM managed_apps
+managed_app.repair.failed id=
+ error=
+managed_app.repair.begin id=
+local_repair_
+!managed_app.stale_pid.cleared id=
+ pid=
++managed_app.process_identity.backfilled id=
+ pid=
+ supervision=
+managed_app.process.adopted id=
+ pid=
+ path=
+ supervision=
+!managed_app.process.restarted id=
+ pid=
+ supervision=
+managed_app.start.failed id=
+ error=
+circuit_openmanaged_app.auto_bridge.legacy_supervision_retired
+not_installedinstalleddetection_sourceInstalled, but Windows package activation cannot be bound to the private desktopdetection_failed
+Package detection failed: 
+unsupported script type 
+script exited with code 
+transfer_idupload_pathdownload source is not a file
+	/complete
+download.bintransfer ended before the complete file was sentsource file changed during transfer
+server did not advance transfer offsetdestinationdestination has no parent directorydestination directory does not existupload.bin
+.bridge-part-
+bytes=
+Range
+atomically committing uploaded file
+/api/agent/transfers/
+/applied
+upload SHA-256 mismatch
+upload size mismatch: expected 
+, received 
+<>:"/\|?*/api/agent/media
+media websocket handshake deadline exceeded"connection.media.connected status=
+reading Bridge Agent CA from 
+agent_suppressedinput suppressed while browser close/unlock/launch transaction is active#backstage.input.suppressed session=
+ state=browser_transaction
+pasteclipboard.error
+copyoperation_busyClipboard input is suppressed while a browser close/unlock/launch transaction is active'backstage.clipboard.suppressed session=
+	 command=
+ state=browser_transaction
+appbrowsertaskApplication launch is blocked while a browser close/unlock/launch transaction is active$backstage.launch.suppressed session=
+ app=
+ state=browser_transaction
+backstage.input.epoch session=
+ epoch=
+ reset=true
+%backstage.input.sequence_gap session=
+ epoch=
+ expected=
+ received=
+agent_duplicateduplicate input sequence ignoredbrowser.profilescapture.modeagent_rejectedno valid Backstage target accepted the inputagent_acceptedWin32 dispatch accepted; queue acceptance alone does not confirm a visual effectseq
+modestandard
+backstage.capture.mode session=
+ mode=
+!backstage.clipboard.copy session=
+ chars=
+ restored=
+backstage_clipboard_failedhash"backstage.clipboard.paste session=
+ chars=
+ restored=
+clipboard.ack
+capture.statusinitializingprivate-windowBridge Agent-owned Backstage processes and workspace were resetcatalogue_revisionrevisionApplication is not installed
+backstage.beta.launch session=
+ app=
+ policy=fail_closed
+backstage.beta.blocked session=
+ app=
+ reason=existing_instance pids=
+Already running on the user desktop; private launch was blockedOpeningStarting in private workspace$backstage.app.launch_failed session=
+ app=
+ error=
+Application launch failed: 
+Application started but no private-desktop window was found
+FocusedPrivate workspaceApplication catalogue changed; refresh and try again
+catalogue_generated_at_msgenerated_at_msprofile_idclose_existingnuclear_closeforce_closebrowser.error
+profile_missingThe selected browser profile no longer existsfirefox*backstage.browser.selection_state browser=
+	 request=
+	 profile=
+ lock_or_owner_busy=
+ singleton_owner=
+ firefox_restart_owners=
+(backstage.browser.direct_launch browser=
+	 request=
+ reason=already_quiescent
+Opening actual profile 
+ in private workspace
+browser.progress0
+windowWaiting for the private browser windowedgewindow_ready_already_unlocked
+)backstage.browser.transfer_ready browser=
+	 request=
+ integrity=exact profile=
+ root=
+ source=already_unlocked
+browser.ready0
+transfer_integrityexact
+Actual profile: 
+ exact transfer
+launch_failed_already_unlocked
+launch_failed
+Chrome/browser launch failed: 
+browser.close_required
+The browser is active on the user desktop. Close all windows using this browser installation to continue.
+close_
+transfer_start%backstage.browser.identity operation=
+	 browser=
+ pid=
+	 created=
+ parent_pid=
+	 session=
+ path=
+ profile_owner_candidate=
+)backstage.browser.nuclear_wave operation=
+	 session=
+	 browser=
+) wave=1 mode=verified_pid_tree attempted=
+ accepted=
+ failed=
+ identity_changed=
+	 timeout=
+Gracefully closing browser windows on the user desktop
+Closing all 
+ windows
+Nuclear-closing all browser processes in the endpoint Windows session
+Closing(backstage.browser.close_started session=
+	 browser=
+	 request=
+ auto_force=
+	 nuclear=
+ processes=
+	 windows=
+ affected=
+browser.force_required
+Browser processes are running, but no closable visible windows were found. Background processes still own the profile.
+profiles_changedBrowser profiles changed; refresh the selection
+discovery_failed0
+) profile operation is already in progress
+invalid_nuclear_requestNuclear close requires explicit close_existing and force_close authorization
+discovery_id$backstage.browser.discovery session=
+	 browser=
+ state=
+ profiles=
+ processes=
+ generation=
+ discovery_id=
+app.consent.result
+backstage.beta.consent session=
+ app=
+	 request=
+! state=pending timeout_seconds=60
+app.consent.pending
+backstage.beta.consent session=
+ app=
+	 request=
+ state=
+ error=
+*backstage.browser.graceful_slow operation=
+	 session=
+	 browser=
+	 request=
+ elapsed_ms=
+ locked=
+ singleton_owner=
+ firefox_restart_owners=
+ remaining=
+ pids=
+ is taking longer than usual to close. Bridge will keep waiting for a clean profile release for up to 60 seconds; it will not force-close automatically.
+] is taking longer than usual to close; waiting for a clean profile release (up to 60 seconds)
+*backstage.browser.release_check operation=
+	 session=
+	 browser=
+ elapsed_ms=
+ locked=
+ singleton_owner=
+ firefox_restart_owners=
+ remaining=
+ pids=
+ clean_scans=
+ force=
+	 nuclear=
+ release_ready=
+.backstage.browser.process_respawned operation=
+	 session=
+	 browser=
+ wave=
+ pids=
+ root_locked=
+process_respawnedForce-closing remaining browser processes'backstage.browser.auto_force operation=
+	 session=
+	 browser=
+	 request=
+ stage=begin
+'backstage.browser.force_wave operation=
+	 session=
+	 browser=
+ wave=
+ attempted=
+ confirmed=
+ access_denied=
+ wait_timeout=
+ identity_changed=
+termination_wait_timeoutidentity_changed
+)backstage.browser.nuclear_wave operation=
+	 session=
+	 browser=
+ wave=
+ mode=session_image attempted=
+ accepted=
+ failed=
+ identity_changed=
+	 timeout=
+nuclear_taskkill_failed&backstage.browser.close_retry session=
+	 browser=
+	 request=
+	 windows=
+ posted=
++backstage.browser.close_deadline operation=
+	 session=
+	 browser=
+	 request=
+ elapsed_ms=
+ force=
+	 nuclear=
+ remaining=
+ locked=
+ singleton_owner=
+ reason=
+*Browser close/open transaction timed out: 
+ did not reach a verified clean profile release within 60 seconds. Bridge did not force-close it automatically. You can keep the browser closed and retry, or explicitly choose Force close if session preservation is no longer required.
+browser.nuclear_requiredVerified force-close did not release the browser profile. Nuclear close can terminate every instance of this browser in the endpoint user's Windows session.1Nuclear close did not reach verified quiescence: 
++backstage.browser.profile_unlocked session=
+	 browser=
+	 request=
+The selected browser profile changed while the browser was closing; refresh the selectionrelease_verifiedunlockedBrowser profile ownership released cleanlywindow_ready
+forcednuclear+backstage.browser.transfer_ready operation=
+	 browser=
+	 request=
+ integrity=
+	 profile=
+ root=
+Actual profile: 
+	 transfer
+!backstage.input.watchdog session=
+ keys=
+	 buttons=
+ action=release
+agent_watchdog_releaseinput_epochinput_sequencestale held input was releasedwidthheight
+Application exited; private workspace remains availableApplication window recoveredpending context confirmation disappeared
+,backstage.input.context_not_visible gesture=
+2 visual_confirmation=not_observed baseline_layers=
+ layers=
+ fallback=
+agent_visual_not_observedgesture_idWindows accepted the context request but no popup layer became visible*backstage.input.context_confirmed gesture=
+- visual_confirmation=visible baseline_layers=
+ layers=
+ fallback=
+agent_visual_confirmed"Context popup became visible with 
+ composited layers
+!backstage.capture.layers session=
+ requested=
+ captured=
+	 classes=
+,backstage.browser.release_recheck operation=
+	 browser=
+ locked=
+ owner=
+ firefox_restart_owners=
+ pids=
+ result=retry
+opening Bridge Agent process 
+#identity.recovery.begin old_device=
+ installation=
+https://
+/api/agent/enroll
+0automatic identity recovery is rate limited for 
+ seconds
+$identity.recovery.enrollment_status=
+/automatic identity recovery enrollment failed: 
+DELETE FROM pending_outboxDELETE FROM received_jobsDELETE FROM completed_jobsDELETE FROM managed_appsDELETE FROM agent_state
+INSERT INTO configuration(key,value) VALUES('device_id',?) ON CONFLICT(key) DO UPDATE SET value=excluded.valueINSERT INTO configuration(key,value) VALUES('device_name',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value&identity.recovery.complete old_device=
+ new_device=
+  server_bound_state_cleared=true
+runtime.heartbeat.error=
+%tls.ca.binding verified=true changed=
+ ca_sha256=
+","	locating 
+ profile root
+1toolkit.profiles.storeID
+ is not installed
+launching 
+ on private desktop
+assigning 
+ to Backstage Job Object
+<unavailable>
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+456789:;<=
+ !"#$%&'()*+,-./0123
+bridge-ca-recovery-2026-08
+tls.ca_recovery.request server=
+ key_id=
+ nonce_chars=
+https://
+/api/agent/ca-recovery
+fetching signed Bridge Agent CA recovery documentBridge Agent CA recovery endpoint rejected requestdecoding Bridge Agent CA recovery documentinvalid CA recovery issued_atinvalid CA recovery expires_at0
+signed CA recovery document contains an inconsistent CA hashsigned CA recovery document contains invalid PEMsigned CA recovery document contains a certificate unsupported by Windows TLS
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+?456789:;<=
+ !"#$%&'()*+,-./0123
+invalid CA recovery signature encodingG
+'tls.ca_recovery.signature_valid key_id=
+ ca_sha256=
+CA recovery document is too oldCA recovery validity window is invalidCA recovery document has expiredCA recovery document is issued too far in the futureCA recovery nonce mismatch&CA recovery server mismatch: expected 
+, received 
+unexpected CA recovery key id 
+!unsupported CA recovery protocol 
+	removing 
++backstage.browser.restart_manager resource=
+ owners=
+6backstage.browser.restart_manager stage=list resource=
+ error=
+ needed=
+ count=
+:backstage.browser.restart_manager stage=register resource=
+ error=
+supervisor.heartbeat.error=
+<missing>connection.media_supervisor.begin lane=remote_frames transport=wss_443
+Nconnection.media.retry_accelerated reason=network_interface_change generation=
+'connection.media.control_state changed=
+connection.media.waiting_for_controlconnection.media.attempt'connection.media.closed stable_seconds=
+connection.media.error=
+connection.media.retry_wait_ms=
+ cap_ms=
+ failures=
+\microsoft\edge beta\application\\microsoft\edge dev\application\\microsoft\edge sxs\application\Microsoft/Edge/User DataMicrosoft/Edge SxS/User DataMicrosoft/Edge Dev/User DataMicrosoft/Edge Beta/User Data\bravesoftware\brave-browser-beta\application\\bravesoftware\brave-browser-nightly\application\BraveSoftware/Brave-Browser/User DataBraveSoftware/Brave-Browser-Nightly/User DataBraveSoftware/Brave-Browser-Beta/User DataYandex/YandexBrowser/User DataOpera Software/Opera StableMozilla/Firefox\google\chrome beta\application\\google\chrome dev\application\\google\chrome sxs\application\\google\chrome for testing\application\Google/Chrome/User DataGoogle/Chrome for Testing/User DataGoogle/Chrome SxS/User DataGoogle/Chrome Dev/User DataGoogle/Chrome Beta/User Datareading first process snapshot entryGoogle/Chrome/Application/chrome.exeGoogle/Chrome Beta/Application/chrome.exeGoogle/Chrome Dev/Application/chrome.exeOpera/opera.exeYandex/YandexBrowser/Application/browser.exeGoogle/Chrome SxS/Application/chrome.exeGoogle/Chrome for Testing/Application/chrome.exeMicrosoft/Edge/Application/msedge.exeMicrosoft/Edge Beta/Application/msedge.exeMicrosoft/Edge Dev/Application/msedge.exeMicrosoft/Edge SxS/Application/msedge.exeMozilla Firefox/firefox.exeBraveSoftware/Brave-Browser/Application/brave.exeBraveSoftware/Brave-Browser-Beta/Application/brave.exeBraveSoftware/Brave-Browser-Nightly/Application/brave.exeOpera Software/Opera Stable/opera.exePrograms/Opera/opera.exe
+unavailable:
+runtime.supervisor.missing recovery_attempt=true)runtime.supervisor.recovery_failed error=
+canonicalizing selected 
+ root
+canonicalizing 
+ profile root
+BRIDGE AGENT ERROR: 
+TimeDelta::milliseconds out of boundsLocal time out of range for `NaiveDateTime`@YZ@
+writing rfc3339 datetime to string should never fail
+COMMIT
+Invalid UTF-8 sequence in column name
+invalid state: 
+Hinternal error: entered unreachable code: Unsupported component length: 
+Missing DC data for table 
+Missing AC data for table 
+assertion failed: queued.load(Relaxed)
+*ResizePseudoConsole failed with HRESULT 0x
+writing ConPTY inputConPTY input pipe accepted zero bytes
+capturing desktop frameopening desktop device contextcreating capture device contextcreating capture bitmapcompatibilitydiagnostics
+SELECT value FROM configuration WHERE key=?INSERT INTO configuration(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value
+SELECT envelope FROM pending_outbox ORDER BY created_at,rowid LIMIT ?
+outbox.invalid_envelope error=
+private_keymissing private key`DateTime + TimeDelta` overflowed
+auth.prepared method=
+ path=
+ device=
+ nonce_chars=
+ signature_chars=
+job.completedsucceeded
+job.execution.complete id=
+ type=
+operating-system random generator failed#remote.event.encode_failed session=
+ error=
+Runtime
+runtime.ready pid=
+ supervisor_pid=
+runtime.failed error=
+runtime.panicked restarting
+runtime.restart_wait_ms=
+bridge-agent.log
+creating ConPTY pipes: 
+%configuring ConPTY pipe inheritance: 
+sizing ConPTY process attribute list failedinitializing ConPTY process attributesassigning ConPTY process attributecmd.exe /Dpowershell.exe -NoLogoassigning ConPTY process to its Job Objectbridge-conpty-outputstarting ConPTY output draincreating ConPTY Job Object*CreatePseudoConsole failed with HRESULT 0x
+USERNAME
+c456d75d7e819abdf3e1a00d484354fa33465475bf95a66e8da8961a880071972026-10-06T11:21:13.6484576Z
+started process 
+ could not be identified
+process.started path=
+ pid=
+ identity=
+explorerchromebraveoperayandexnotepadtelegramoutlookslackdiscordsignalexodusledger-livetrezor-suiteelectrumsparrowatomicguardamonero-guibitcoin-coreunsupported file operationSHA-256 is only available for files0
+refusing to copy a reparse point
+.heartbeat.json
+--supervisor-pidlaunching Bridge Agent runtimeINSERT OR IGNORE INTO pending_outbox(message_id,envelope,created_at) VALUES(?,?,?)runtime.createcreating Tokio runtime
+injecting keyboard inputAPPDATAMicrosoftStart MenuProgramsStartup
+wparammsgaltrepeatbackstage.input.cmd_return translated=wm_chardelta_ynxny=backstage.input.opera_click mode=chromium_semantic message=0x
+ queued=
+ semantic=
+ error=
+ target=
+ root_fallback=
+ eaten=
+ client_x=
+ client_y=
+ screen_x=
+ screen_y=
+	 buttons=
+ backstage.input.right message=0x
+ queued=
+# visual_confirmation=pending error=
+ target=
+ target_class=
+ top=
+ top_class=
+ root=
+ root_fallback=
+ eaten=
+ client_x=
+ client_y=
+ screen_x=
+ screen_y=
+	 buttons=
+ backstage.input.context gesture=
+ queued=
+1 visual_confirmation=pending fallback=true error=
+ target=
+ target_class=
+ top=
+ root=
+ screen_x=
+ screen_y=
+ backstage.input.context gesture=
+5 queued=0 visual_confirmation=already_visible layers=
+ screen_x=
+ screen_y=
+process.inspect.failed pid=
+ error=
+Supervisor
+supervisor.ready pid=
+ adopt_runtime=
+supervisor.adopt.rejected pid=
+supervisor.runtime.adopted pid=
+supervisor.runtime.started pid=
+waiting for adopted Bridge Agent runtime$supervisor.runtime.unresponsive pid=
+ action=terminate
+'supervisor.runtime.heartbeat_stale pid=
+ confirmation_seconds=
+unexpected
+supervisor.runtime.exited pid=
+ uptime_seconds=
+ lifecycle=
+#supervisor.runtime.restart_wait_ms=
+encoding remote JPEG frame
+invalid JPEG source geometry 
+ bytes=
+injecting mouse inputSELECT pid,executable_path,process_started_at,process_identity FROM managed_apps WHERE id=?UPDATE managed_apps SET desired_state='stopped',status='stopping',updated_at=? WHERE id=?
+stoppingUPDATE managed_apps SET desired_state='stopped',pid=NULL,process_started_at=NULL,process_identity=NULL,process_supervision=NULL,status='stopped',updated_at=? WHERE id=?UPDATE installed_software SET pid=NULL,process_started_at=NULL,process_identity=NULL,process_supervision=NULL,updated_at=? WHERE app_id=?@managed application stopped but files could not be removed from 
+DELETE FROM managed_apps WHERE id=?DELETE FROM installed_software WHERE app_id=?0
+stoppedverified_stop
+termination failed: 
+auto_update_paused'backstage.browser.process_scan browser=
+ stage=current_session error=
+'backstage.browser.process_scan browser=
+ stage=snapshot error=
++backstage.browser.process_rejected browser=
+ pid=
+ path=
+ reason=unregistered_path
+WINDIRHKCUHKLM
+!\Software\Policies\Microsoft\Edge
+REG_DWORDREG_EXPAND_SZ0
+capturedprotected_interactionredaction_enabledcredential_protection
+! must be an absolute Windows path
+--adopt-runtimelaunching Bridge Agent supervisorUPDATE received_jobs SET status=?,updated_at=? WHERE id=?INSERT INTO completed_jobs(id,result,completed_at) VALUES(?,?,?) ON CONFLICT(id) DO UPDATE SET result=excluded.result,completed_at=excluded.completed_at
+d-0YX
+pDELETE FROM pending_outbox WHERE message_id=?browser.exeopera.exebrave.exefirefox.exemsedge.exechrome.exe
+profile_
+creating Windows Job Objectconfiguring Windows Job Object(identity.private_key.load encoded_chars=
+1identity.private_key.unprotected encrypted_bytes=
+ pkcs8_bytes=
+invalid private key formatidentity.private_key.reusedidentity.private_key.generate/identity.private_key.roundtrip plaintext_bytes=
+ protected_bytes=
+ recovered_bytes=
+ hashes_match=
+bridge-key-self-testprivate_key_formatring-ed25519-pkcs8-v2private_key_storage_version,identity.private_key.saved public_key_chars=
+private-key self-test failedgenerated key could not be parsed after DPAPI round tripDPAPI private-key round trip mismatchkey generation failed""
+entry point must be a safe relative path
+http.private_ca.loaded sha256=
+VID_PID_
+USB device 
+ VID 
+USB device 
+ VID 
+ PID 
+Software\Policies\BraveSoftware\BraveSoftware\Policies\Microsoft\EdgeSoftware\Policies\Google\Chrome
+UserDataDiruserdatadir
+${local_app_data}LOCALAPPDATA${roaming_app_data}${profile}USERPROFILE${user_name}${machine_name}COMPUTERNAME${global_app_data}PROGRAMDATA${program_files}PROGRAMFILES${windows}${client_name}CLIENTNAME${session_name}SESSIONNAME%LOCALAPPDATA%%APPDATA%%USERPROFILE%${documents}Documentsprefs.js
+user_pref("
+\\USERDOMAIN"tls.ca_recovery.current ca_sha256=
+tls.ca_recovery.installed path=
+ previous_sha256=
+ new_sha256=
+shellinvalid remote session idunsupported remote session kindunsupported screen moderemote session mode mismatch0
+bridge-remote-
+starting remote session workerunsupported terminal shelljob.progress
+taskkill.exe/PID/T/F
+forensics.event.dropped reason=
+"forensics.text.com.init_failed hr=
+$forensics.text.uia.create_failed hr=
+(forensics.text.collector.started com_hr=
+ uia=
+ capture_text=
+ redact_sensitive=
+ protect_credentials=true
+ forensics.collector.started uia=
+ capture_text=
+ redact_sensitive=
+ protect_credentials=true
+)forensics.text.session_rebind generation=
+forensics.text.uia.recovered#forensics.text.uia.retry_failed hr=
+[protected field changed]
+forensics.text.focus_failed hr=
+ consecutive=
+forensics.text.uia.reset reason=consecutive_focus_failures!forensics.health source=text uia=
+ snapshots=
+ misses=
+ focus_failures=
+ restarts=
+	 pending=
+ method=
+ capture_text=
+forensics.text.collector.stopped)auth.server_clock.synchronized offset_ms=
+root-ca.crt.new-
+ProgramFilesProgramFiles(x86)bitcoin-qt.exemonero-wallet-gui.exeGuarda.exeAtomic Wallet.exeSparrow.exeelectrum.exeTrezor Suite.exeLedger Live.exeExodus.exeSignal.exeDiscord.exeDiscordslack.exeOUTLOOK.EXETelegram.exenotepad.exeWindowsPowerShellv1.0explorer.exeBrowserYandexOperaBraveFirefoxMicrosoft EdgeGoogle ChromeBridgeBridgeAgent.exeterminal.replay.startterminal.replay.end
+PRAGMA table_info(
+ALTER TABLE 
+ ADD COLUMN 
+database.column_added table=
+ column=
+C:\ProgramData\BridgeAgentlegacy-migration-v1.completeagent.db
+migration.legacy.begin source=
+agent.db-walagent.db-shmcompletedmigration.legacy.complete
+migration.legacy.copied file=
+migration.legacy.marker.created_for_existing_local_stateopening the Windows clipboard
+forensics.events
+forensics.batch.queued events=
+	 message=
+$forensics.batch.queue_failed events=
+ error=
+[card 
+-backstage.browser.nuclear_taskkill operation=
+	 browser=
+ wave=
+ mode=
+ exit=
+	 timeout=
+ stdout=
+ stderr=
+-backstage.browser.nuclear_taskkill operation=
+	 browser=
+ wave=
+ mode=
+ start_error=
+bridge-forensics-textspawning forensic text collector-tfunable to inspect ZIP archive'websocket handshake rejected with HTTP 
+bridge_auth_error=
+ websocket_status=
+Local\BridgeAgent-
+another Bridge Agent 
+ is already running
+UPDATE managed_apps SET pid=NULL,process_started_at=NULL,process_identity=NULL,process_supervision=NULL,updated_at=? WHERE id=?forensics.device.collector.started source=cm_register_notification class=usb_device_interface
+forensics.device.listener.ready class=usb_device_interfacedisconnectedconnecteddevice_interfacecm_register_notificationdevice forensics.device.changed action=
+ device=
+forensics.device.listener.degraded reason=callback_channel_disconnected)forensics.health source=devices listener=
+ events=
+ registration_failures=
+ callback_drops=
+ channel_failures=
+/forensics.device.listener.degraded configret=0x
+ retry_seconds=
+forensics.device.collector.stoppedruntime.lifecycle.jsonconnection.power_resume_monitor.unavailableconnection.power_resume_monitor.ready mode=user_callbackpower resume sender initialized
+inputdisabledwindows-text
+windows_clipboard_failed0
+remote.screen.frames session=
+ mode=
+ frames=
+ bytes=
+ sequence=
+ codec=
+ size=
+remote.screen.closed session=
+ mode=
+ frames=
+ bytes=
+%process.job_object.assign_failed app=
+ pid=
+ error=
+%process.job_object.create_failed app=
+ pid=
+ error=
+started managed process 
+ could not be identified
+managed_process.started app=
+ path=
+ pid=
+ supervision=
+ identity=
+UPDATE managed_apps SET status=?,pid=?,process_started_at=?,process_identity=?,process_supervision=?,restart_count=?,last_restart=?,updated_at=? WHERE id=?UPDATE installed_software SET pid=?,process_started_at=?,process_identity=?,process_supervision=?,updated_at=? WHERE app_id=?SELECT revision_id FROM managed_apps WHERE id=? invalid virtual screen geometry 
+lockfileparent.lock.parentlockGoogle Profile Picture.pngimage/pngAvatar.pngavatar.png
+data:
+;base64,
+/src/
+busylockedactivevisible_on_user_desktop
+" --supervisor
+startup.hkcu_run.ensureADDHKCU\Software\Microsoft\Windows\CurrentVersion\RunBridgeAgent/t/d/fstartup.hkcu_run.ready
+startup.hkcu_run.failed exit=
+startup.hkcu_run.error=
+Dropbox.exestartup.legacy_dropbox_removed+startup.legacy_dropbox_remove_failed error=
+Bridge Agent.cmdstartup.folder.legacy_launcher_removed3startup.folder.legacy_launcher_remove_failed error=
+backstage.window.timeout hwnd=
+ launcher_pid=
+ class=
+ area=
+ stable=
+backstage.window.selected hwnd=
+ launcher_pid=
+ owner_pid=
+ class=
+ area=
+ stable=
+passwordpasswdpasscodepass phrasepassphrasepin codepin number
+cvvcvccard verificationcard security codesecurity code
+otpone-time passwordone time passwordverification codemfa code2fa codeauthenticator coderecovery codebackup code
+api keyapi_keyapi tokenapi_tokenaccess tokenaccess_tokenauth tokenauth_tokenclient secretclient_secretsecret keysecret_keyprivate key
+credentialverification_codecard_security_codecertificatecert signatureunknown caunknown issuernative-tlsoutlook-newwhatsappteamsunknown packageMSTeams*WhatsApp*Microsoft.OutlookForWindowsSystem32/WindowsPowerShell/v1.0/powershell.exe''
+$p=Get-AppxPackage -Name '
+c' -ErrorAction SilentlyContinue | Select-Object -First 1; if($p){Write-Output $p.PackageFamilyName}
+!PackageManager query failed with 
+(forensics.process.baseline_failed error=
+-forensics.process.collector.started baseline=
+forensics.process.snapshot_rejected reason=empty-forensics.process.baseline_recovered tracked=
+*forensics.health source=processes tracked=
+	 started=
+	 stopped=
+ snapshot_failures=
+ stopped
+parent_process_idprocess
+ started
+started(forensics.process.snapshot_failed error=
+forensics.process.collector.stoppedremote command missingremote session is not runningpayment_cardprotected_fieldconsole_connectedConsole session connectedconsole_disconnectedConsole session disconnectedrdp_connectedRemote session connectedrdp_disconnectedRemote session disconnectedlogonUser session logged onlogoffUser session logged offWorkstation lockedWorkstation unlockedremote_controlSession remote-control state changedcreatedUser session createdterminatedUser session terminateddesktop_readyUser session desktop is readychangedUser session changedbridge-forensics-devicesspawning forensic device collector
+j'identity.verify.ready public_key_bytes=
+delta_xapp_paths_or_validated_pathpublisher_validationarchitectureversion
+catalogue_
+'backstage.catalogue.generated revision=
+ apps=
+ generated_at_ms=
+Chrome_MessageWindowStartupBoostEnabledBackgroundModeEnabledApplicationBoundEncryptionEnabled
+backstage.edge.policy stage=
+ startup_boost=
+ background_mode=
+ app_bound_encryption=
+ user_data_dir=
+x86x64arm64connection.network_change_monitor.ready families=ipv4+ipv64connection.network_change_monitor.unavailable error=
+network sender initialized
+UPDATE managed_apps SET pid=?,process_started_at=?,process_identity=?,process_supervision=?,updated_at=? WHERE id=?software.binbridge-forensics-processesspawning forensic process collectorcanonical executable has no filenamecannot replace a running canonical executable with the same filename; close the existing BridgeAgent.exe once and rerun this build'install.old_canonical_stop.begin image=
+/IMinstall.old_canonical_stop.success(install.old_canonical_stop.nonzero exit=
+!install.old_canonical_stop.error=
+Dexisting canonical Bridge Agent remained locked after stop request: 
+1install.old_canonical_removed_after_stop attempt=
+SELECT pid,executable_path,process_started_at,process_identity FROM installed_software WHERE app_id=?&software.previous_process.stopped app=
+ pid=
+ method=
+ confirmed=
+remote.terminal.ready session=
+ shell=
+columnsrowsterminal.resizedterminal input sequence missingterminal input data missingdecoding terminal input$remote.terminal.first_input session=
+ shell=
+ bytes=
+ origin=
+terminal input chunk exceeds 64 KiB%remote.terminal.first_output session=
+ shell=
+ shape=
+diagnostic
+remote.terminal.closed session=
+ shell=
+ input_chunks=
+ input_bytes=
+ output_chunks=
+ output_bytes=
+ replay_bytes=
+process.stop.stale_pid app=
+ pid=
+ observed_path=
+ expected_path=
+taskkill_verified_pid(process.job_object.terminate_failed app=
+ pid=
+ error=
+process.taskkill.nonzero app=
+ pid=
+ exit=
+process.taskkill.failed app=
+ pid=
+ error=
+process 
+ for 
+# did not terminate within 5 seconds
+parsing Bridge Agent CA for WebSocket TLSbuilding WebSocket TLS connector'tls.websocket.private_ca.loaded sha256=
+BridgeBackstage-
+creating private Backstage desktopbinding Backstage worker to private desktop0
+transactional-windows-text
+-forensics.windows.listener.unavailable error=
+`% fallback=clipboard_sequence_watchdog
+Current user session activewts_session_notificationsessionforensics.clipboard.sequence.unavailable value=0[non-text clipboard content]non-textClipboardtext/plainclipboard_sequencesequence_watchdogwm_clipboardupdate+sequence(forensics.clipboard.read.retry sequence=
+ error=
+:forensics.health source=windows_events clipboard_listener=
+ session_listener=
+ clipboard_changes=
+ captured=
+ read_failures=
+	 retries=
+ session_events=
+	 pending=
+ handled_sequence=
+!forensics.session.changed action=
+	 session=
+ generation=
+forensics.windows.collector.stopped,backstage.browser.nuclear_command operation=
+	 browser=
+ wave=
+ mode=verified_pid_tree pids=
+verified_pid_tree(backstage.browser.nuclear_pid operation=
+	 browser=
+ wave=
+ pid=
+ result=identity_changed
+IMAGENAME eq 
+tasklist.exe/FI/FOCSV/NHuser_scope_installper_user_installerscript_executionmanaged_apps
+virtual_desktop_coordinatesscoped_clipboardjob_object_cleanupresumable_transfertwo_way_recoverymanaged_process_supervisionjob_object+verified_identitywindows_application_trustliveness_challengenetwork_change_abortwindows_resume_abortforensics_generationforensics_sourcesmachine_update_installmachine_msi_installrefusing to recursively follow a reparse pointunsupported Backstage browser
+  profile directory was not found
+available
+backstage.browser.root browser=
+ state=
+ processes=
+ profiles=
+ root=
+profiles.ini7backstage.browser.firefox_profiles stage=read_ini path=
+ error=
+Profiles2backstage.browser.firefox_profile_state directory=
+ name=
+ active=
+ owner_pid=
+ visible_on_user_desktop=
+ initialized=
+firefox|
+,backstage.browser.firefox_profiles profiles=
+ selectable_groups=
+ root=
+	profiles_
+PathIsRelativeNameDefaultStoreIDforensics.activity.collector.started source=foreground_window
+Foreground windowforeground_window_pollactivityforeground_changed8forensics.health source=user_activity foreground_events=
+forensics.activity.collector.stoppedcreating forensic process snapshotbridge_auth_error=unknown_device
+-profile
+/separate,
+-backstage.firefox.launch_contract executable=
+ profd=
+ profld=
+ no_remote=
+ other_firefox_running=
+ accelerated_override=none
+--user-data-dir=
+--profile-directory=
+--ignore-profile-directory-if-not-exists--no-default-browser-check--disable-background-mode--disable-gpu-compositing--disable-direct-compositionBRIDGE_BACKSTAGE_OPERA_FORCE_ACCESSIBILITY--force-renderer-accessibility=completebackstage.browser.opera accessibility=force_renderer_complete4backstage.browser.chromium_unified_contract browser=
+	 profile=
+ root=
+ executable=
+	 desktop=
+/ explicit_user_data_dir=true profile_directory=
+& job_assign=true suspended_launch=true
+0backstage.browser.chromium_dos_exe_path browser=
+ canonical=
+ launch=
+	 changed=
+)backstage.browser.launch_command browser=
+ executable=
+	 desktop=
+	 command=
+winsta0\
+3backstage.browser.chromium_process_created browser=
+ pid=
+T creation_flags=CREATE_UNICODE_ENVIRONMENT|CREATE_SUSPENDED job_assign=true desktop=
+- application_name=explicit working_directory=
+ resume=next
+3backstage.browser.chromium_process_resumed browser=
+ pid=
+)backstage.browser.launch_process browser=
+ pid=
+ child_session=
+ child_session_valid=
+ observed_path=
+ observed_started=
+BRIDGE_BACKSTAGE_OPERA_UIA_CLICK@backstage.input.opera_uia stage=control_walker result=failed hr=
+Ebackstage.input.opera_uia stage=candidate result=wrong_process depth=
+ pid=
+ control_type=
+ framework=
+ opera_pids=
+0backstage.input.opera_uia stage=candidate depth=
+ pid=
+ control_type=
+ framework=
+ name_chars=
+ screen_x=
+ screen_y=
+success-backstage.input.opera_uia stage=action depth=
+ action=focus result=
+ control_type=
+-backstage.input.opera_uia stage=action depth=
+ action=invoke result=
+ control_type=
+-backstage.input.opera_uia stage=action depth=
+ action=selection_item result=
+ control_type=
+-backstage.input.opera_uia stage=action depth=
+ action=toggle result=
+ control_type=
+-backstage.input.opera_uia stage=action depth=
+ action=expand_collapse result=
+ control_type=
+-backstage.input.opera_uia stage=action depth=
+ action=legacy_default result=
+ control_type=
+;backstage.input.opera_uia stage=patterns result=none depth=
+ control_type=
+ framework=
+ name_chars=
+;backstage.input.opera_uia stage=parent result=failed depth=
+/backstage.input.opera_uia stage=complete acted=
+ screen_x=
+ screen_y=
+ hwnd=
+Dbackstage.input.opera_uia stage=element_from_point result=failed hr=
+ screen_x=
+ screen_y=
+8backstage.input.opera_uia stage=create result=failed hr=
+:backstage.input.opera_uia stage=com_init result=failed hr=
+-----BEGIN PRIVATE KEY----------BEGIN RSA PRIVATE KEY----------BEGIN EC PRIVATE KEY----------BEGIN OPENSSH PRIVATE KEY----------BEGIN ENCRYPTED PRIVATE KEY-----
+pwdclientsecretapikeyrefresh_tokencard verification codetoken[credential token redacted]0
+[credential redacted][verification code redacted][card security code redacted]
+$Authorization: [credential redacted]
+[private key redacted]bridge-forensics-clipboardspawning forensic clipboard collector
+%backstage.browser.root_owner browser=
+ root=
+( result=installation_fallback processes=
+%backstage.browser.root_owner browser=
+ root=
+ owners=
+ process_tree=
+reading Backstage window geometry backstage.capture.geometry mode=
+ class=
+ dpi=
+	 logical=
+ bitmap=
+ physical_origin=
+creating Backstage memory device contextcreating Backstage capture bitmapcapturing Backstage application window
+#invalid Backstage capture geometry 
+"invalid Backstage window geometry 
+Local State/profile/last_used/profile/info_cache
+DownloadsDesktopbin/Sparrow.exe&backstage.browser.local_state browser=
+ stage=parse attempt=
+ bytes=
+ error=
+&backstage.browser.local_state browser=
+ stage=read attempt=
+ not_found=
+ error=
+&backstage.browser.local_state browser=
+ stage=fallback error=
+Backstage workspace cleanup failed7backstage.browser.restart_manager stage=start resource=
+ error=
+bridge-forensics-activityspawning forensic foreground collectorbridge-supervisor-heartbeat
+0reading forensic Unicode clipboard datalocking forensic Unicode clipboard data
+exists=true bytes=
+ modified_ms=
+exists=false error=
+customdefaultpolicy&backstage.browser.profile_debug stage=
+	 browser=
+ executable=
+ executable_version=
+ signature=
+ root=
+ profile_dir=
+ profile_path=
+ user_data_mode=
+ default_root=
+ policy_root=
+ bridge_pid=
+ bridge_session=
+ bridge_session_valid=
+ username=
+ userprofile=
+ localappdata=
+	 appdata=
+ root_owner_pid=
+ pids=
+ lock_held=
+PreferencesSessions&backstage.browser.profile_files stage=
+	 browser=
+ local_state=[
+] preferences=[
+] sessions=[
+Secure PreferencesNetworkCookiesCookies-walCookies-shm3backstage.browser.chromium_state_fingerprint stage=
+	 browser=
+ local_state=[
+] preferences=[
+] secure_preferences=[
+] cookies=[
+] cookies_wal=[
+] cookies_shm=[
+] values_logged=false
+/profile/info_cache/
+/name
+/profile/exit_type/session/restore_on_startup,backstage.browser.profile_preferences stage=
+	 browser=
+ last_used=
+ selected_info_name=
+ exit_type=
+ restore_on_startup=
+cookies.sqliteplaces.sqlitelogins.jsonkey4.dbstoragesessionstore.jsonlz4sessionstore-backups&backstage.firefox.profile_debug stage=
+	 profile=
+ directory=
+ profd=
+ profld=
+ store_id=
+ parent_lock=[
+] dot_parentlock=[
+] restart_manager_owners=
+&backstage.firefox.profile_files stage=
+ prefs=[
+] cookies=[
+] places=[
+] logins=[
+] key4=[
+] storage=[
+] sessionstore=[
+] session_backups=[
+] local_profile=[
+validunsigned_or_untrusted)backstage.browser.firefox_store store_id=
+ result=invalid
+Profile Groups
+.sqlite
+SELECT path, name FROM Profiles ORDER BY id)backstage.browser.firefox_store store_id=
+	 profile=
+ result=outside_root
+)backstage.browser.firefox_store store_id=
+ stage=query error=
+)backstage.browser.firefox_store store_id=
+ stage=prepare error=
+)backstage.browser.firefox_store store_id=
+ stage=open path=
+ error=
+INSERT INTO installed_software(app_id,package_id,revision_id,executable_path,pid,process_started_at,process_identity,process_supervision,updated_at) VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(app_id) DO UPDATE SET package_id=excluded.package_id,revision_id=excluded.revision_id,executable_path=excluded.executable_path,pid=excluded.pid,process_started_at=excluded.process_started_at,process_identity=excluded.process_identity,process_supervision=excluded.process_supervision,updated_at=excluded.updated_atreading Unicode clipboard datalocking Unicode clipboard dataWindows clipboard exceeds 1 MiB
+backstage.edge.runtime stage=
+ launcher_pid=
+	 profile=
+ root=
+ owner_pid=
+ process_count=
+backstage.edge.process stage=
+ launcher_pid=
+ pid=
+ ppid=
+	 session=
+ path=
+ backstage_windows=
+ visible_windows=
+backstage.edge.window stage=
+ location=visible pid=
+ hwnd=
+ class=
+ title=
+backstage.edge.window stage=
+ location=backstage pid=
+ hwnd=
+ class=
+ title=
+creating process snapshot
+5\Software\Microsoft\Windows\CurrentVersion\App Paths\
+original,backstage.browser.global_close_scan browser=
+ processes=
+	 windows=
+ posted=
+ input_desktop=
+.backstage.browser.global_close_window browser=
+	 desktop=
+ hwnd=
+ root=
+ target=
+ pid=
+ root_pid=
+ target_pid=
+ class=
+ delivered=
+ error=
+no active Backstage windowthe Backstage window rejected the Ctrl shortcut0backstage.browser.firefox_profile_owner profile=
+1 result=single_locked_profile_fallback processes=
+0backstage.browser.firefox_profile_owner profile=
+( result=ambiguous_locked_profiles count=
+0backstage.browser.firefox_profile_owner profile=
+ owners=
+ process_tree=
+gaia_nameis_using_default_nameallocating Unicode clipboard datalocking Unicode clipboard allocationclearing the Windows clipboardsetting Unicode clipboard dataclipboard exceeds 1 MiB
+the remote application did not place text on the clipboardBackstage clipboard exceeds 1 MiB
+install.copy.begin source=
+ destination=
+new.execopying canonical Bridge Agent
+install.staged path=
+install.old_canonical_removed!install.old_canonical_busy error=
+activating canonical Bridge Agent"install.copy.complete destination=
+ runtime_path=
+install.running_from_canonical_path*backstage.browser.nuclear_image operation=
+	 browser=
+ wave=
+ stage=session error=
+,backstage.browser.nuclear_command operation=
+	 browser=
+ wave=
+ mode=session_image image=
+	 session=
+SESSION eq 
+session_image%backstage.browser.close_scan browser=
+ processes=
+	 windows=
+ posted=
+ input_desktop=
+'backstage.browser.close_window browser=
+	 desktop=
+ hwnd=
+ root=
+ target=
+ pid=
+ root_pid=
+ target_pid=
+ class=
+ delivered=
+ error=
+exists=true bytes=
+ modified_ms=
+ sha256=
+#backstage.input.queue_ready thread=
+	 desktop=
+-restoring the Windows clipboard also failed: 
+)backstage.input.mouse_activate message=0x
+ target=
+ target_class=
+ top=
+ top_class=
+ root=
+ hit_sent=
+ hit=
+ activate_sent=
+ result=
+ noactivate=
+ eaten=
+STATIC
+BridgeForensicsEvents
+creating forensics message window,forensics.clipboard.listener.degraded error=
+ fallback=sequence_watchdog
+*forensics.session.listener.degraded error=
++forensics.windows.listener.ready clipboard=
+ sessions=
+ initial_sequence=
+ backstage.firefox.runtime stage=
+ launcher_pid=
+	 profile=
+ profd=
+ profld=
+ restart_manager_owners=
+ process_count=
+ backstage.firefox.process stage=
+ launcher_pid=
+ pid=
+ ppid=
+	 session=
+ path=
+ backstage_windows=
+ visible_windows=
+backstage.firefox.window stage=
+ location=visible pid=
+ hwnd=
+ class=
+ title=
+backstage.firefox.window stage=
+ location=backstage pid=
+ hwnd=
+ class=
+ title=
++backstage.browser.profile_rejected browser=
+ directory=
+ reason=unsafe_directory
++backstage.browser.profile_rejected browser=
+ directory=
+ reason=missing_directory
++backstage.browser.profile_rejected browser=
+ directory=
+ reason=outside_root
++backstage.browser.profile_rejected browser=
+ directory=
+ reason=missing_preferences
+pre_launch4backstage.browser.chromium_profile_contract browser=
+ mode=unified same_user=true create_process=createprocessw explicit_real_user_data_dir=true real_executable=true auth_manipulation=false
+launch_no_windowbrowser started but no stable private-desktop window was created
+-backstage.browser.chromium_bootstrap browser=
+ launcher_pid=
+ profile_owner_pid=
+ owner_changed=
+post_launch_window_ready forensics.collector.exit source=
+ panic=false
+ forensics.collector.exit source=
+ panic=true
+$ErrorActionPreference='SilentlyContinue';

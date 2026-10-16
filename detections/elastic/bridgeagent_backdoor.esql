@@ -1,0 +1,30 @@
+// Title:   BridgeAgent backdoor - hash, default C2, persistence and on-disk state
+// Report:  reports/bridgeagent/2026-10-16-c4545d48db19/triage.md
+// Product: Elastic ES|QL on Elastic Defend data
+// Status:  From static analysis; not tested on telemetry. The C2 address was NOT contacted.
+//          93.152.213.149 is the built-in default (sample 0x1401f3ae9); an operator can store a
+//          different server_ip in agent.db, so the path and registry conditions matter more.
+FROM logs-endpoint.events.*
+| WHERE process.hash.sha256 == "c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766"
+   OR file.hash.sha256 == "c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766"
+   OR destination.ip == "93.152.213.149"
+   OR process.executable LIKE "*\\AppData\\Local\\Programs\\Bridge\\BridgeAgent.exe"
+   OR process.parent.executable LIKE "*\\AppData\\Local\\Programs\\Bridge\\BridgeAgent.exe"
+   OR file.path LIKE "*\\AppData\\Local\\Bridge\\logs\\bridge-agent.log"
+   OR file.path LIKE "*\\AppData\\Local\\Bridge\\agent.db"
+   OR file.path LIKE "*\\AppData\\Local\\Bridge\\root-ca.crt"
+   OR file.path LIKE "C:\\ProgramData\\BridgeAgent\\*"
+   OR (registry.path LIKE "*\\CurrentVersion\\Run\\BridgeAgent")
+   OR (process.name == "reg.exe" AND process.command_line LIKE "*CurrentVersion\\Run*BridgeAgent*--supervisor*")
+   OR process.command_line LIKE "*--supervisor-pid*"
+   OR process.command_line LIKE "*--adopt-runtime*"
+| EVAL signal = CASE(
+    destination.ip == "93.152.213.149", "c2",
+    registry.path LIKE "*\\Run\\BridgeAgent" OR process.name == "reg.exe", "persistence",
+    process.parent.executable LIKE "*\\Programs\\Bridge\\BridgeAgent.exe", "agent-child",
+    file.path IS NOT NULL, "agent-file",
+    "agent-process")
+| STATS events = COUNT(*), first = MIN(@timestamp), last = MAX(@timestamp),
+        signals = VALUES(signal), children = VALUES(process.name)
+    BY host.name, user.name
+| SORT last DESC

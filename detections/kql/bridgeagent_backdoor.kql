@@ -1,0 +1,56 @@
+// Title:   BridgeAgent backdoor (staonchik.exe, Rust "bridge-agent" v5.1.4) - install, persistence, C2, hidden-desktop browser use
+// Report:  reports/bridgeagent/2026-10-16-c4545d48db19/triage.md
+// Product: Microsoft Defender XDR advanced hunting
+// ATT&CK:  T1547.001, T1071.001, T1573.002, T1564.003, T1185, T1115, T1059.001, T1059.003, T1105
+// Status:  From static analysis. Not tested on telemetry. The C2 address was not contacted.
+// Logic:   Each branch is a separate signal. The persistence branch and the canonical-path branch
+//          are specific enough to alert on alone; browser and shell children of BridgeAgent.exe
+//          show hands-on-keyboard use of the hidden "Backstage" desktop.
+let c2 = dynamic(["93.152.213.149"]);                       // default server_ip, sample 0x1401f3ae9
+let hashes = dynamic(["c4545d48db19349484d97681beaa8832f25663250db0e5ff16ef36e9e8ea8766"]);
+let canon = @"\AppData\Local\Programs\Bridge\BridgeAgent.exe";   // sample 0x14022879c..0x1402288f5
+let browsers = dynamic(["chrome.exe", "msedge.exe", "brave.exe", "opera.exe", "browser.exe", "firefox.exe"]);
+union
+// 1. HKCU Run value "BridgeAgent" written with reg.exe, data "<path>" --supervisor (sample 0x140247192..0x140247374)
+(DeviceProcessEvents
+ | where FileName =~ "reg.exe"
+ | where ProcessCommandLine has "add" and ProcessCommandLine has @"CurrentVersion\Run"
+       and ProcessCommandLine has "BridgeAgent" and ProcessCommandLine has "--supervisor"
+ | extend Signal = "run-key-reg-exe"),
+(DeviceRegistryEvents
+ | where RegistryKey has @"\Software\Microsoft\Windows\CurrentVersion\Run"
+ | where RegistryValueName =~ "BridgeAgent" or RegistryValueData has "BridgeAgent.exe"
+ | extend Signal = "run-key-value"),
+// 2. Agent running from its canonical path, or with its supervisor/runtime switches
+(DeviceProcessEvents
+ | where FolderPath endswith canon
+      or ProcessCommandLine has_any ("--supervisor-pid", "--adopt-runtime")
+      or (FileName =~ "BridgeAgent.exe" and ProcessCommandLine has "--supervisor")
+      or SHA256 in (hashes)
+ | extend Signal = "agent-process"),
+// 3. Agent state on disk: %LOCALAPPDATA%\Bridge\{agent.db,root-ca.crt,logs\bridge-agent.log}, legacy C:\ProgramData\BridgeAgent
+(DeviceFileEvents
+ | where ActionType in ("FileCreated", "FileRenamed", "FileModified")
+ | where (FolderPath has @"\AppData\Local\Bridge\" and FileName in~ ("agent.db", "root-ca.crt", "bridge-agent.log", ".heartbeat.json", "runtime.lifecycle.json"))
+      or FolderPath startswith @"C:\ProgramData\BridgeAgent"
+      or FolderPath endswith canon
+      or SHA256 in (hashes)
+ | extend Signal = "agent-files"),
+// 4. C2: HTTPS enrollment/sync and WSS on 443 to the default server
+(DeviceNetworkEvents
+ | where RemoteIP in (c2)
+ | extend Signal = "c2-connection"),
+// 5. Real browser profile opened by the agent on its hidden desktop (strings "--user-data-dir=", "--profile-directory=", "BridgeBackstage-")
+(DeviceProcessEvents
+ | where InitiatingProcessFileName =~ "BridgeAgent.exe" or InitiatingProcessFolderPath endswith canon
+ | where FileName in~ (browsers)
+ | extend Signal = "backstage-browser"),
+// 6. Remote shell and job execution: cmd.exe /D /S /C, powershell -NoLogo -NoProfile -NonInteractive, taskkill, tar, msiexec
+(DeviceProcessEvents
+ | where InitiatingProcessFileName =~ "BridgeAgent.exe" or InitiatingProcessFolderPath endswith canon
+ | where FileName in~ ("cmd.exe", "powershell.exe", "taskkill.exe", "tasklist.exe", "tar.exe", "msiexec.exe", "reg.exe")
+ | extend Signal = "agent-child")
+| project Timestamp, DeviceName, Signal, ActionType, FileName, FolderPath, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, RegistryKey, RegistryValueName,
+          RegistryValueData, RemoteIP, RemotePort, SHA256
+| order by DeviceName asc, Timestamp asc
