@@ -55,11 +55,11 @@
    password managers, messengers, Vault, Wi-Fi, VPN, SSH, cloud keys, an LSASS
    dump through an import-less `lss.exe`), and two ZIP uploads go to
    `/api/forensics` at 90 seconds and at 5 minutes.
-9. **Detections:** 6 YARA rules (3 for the loader, 3 for the agent), each 1/1 on
-   its sample and 0 hits on about 47,000 benign files and the other lab
-   samples. KQL, EQL and ES|QL for the loader chain and the agent are written
-   from static analysis and not tested on telemetry. The collector has no
-   rules yet.
+9. **Detections:** 10 YARA rules (3 for the loader, 3 for the agent, 4 for the
+   collector and its two helpers), each 1/1 on its sample and 0 hits on about
+   47,000 benign files and the other lab samples. KQL, EQL and ES|QL for the
+   loader chain, the agent and the collector are written from static analysis
+   and not tested on telemetry.
 
 ## For defenders
 
