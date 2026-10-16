@@ -1,0 +1,102 @@
+# YARA-X yara-x-cli 1.21.0, 2026-10-16T11:17:52Z, rules: detections/yara/bridgeagent_collector.yar
+## matches on the reference files
+BridgeAgent_Collector_Strings samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage2_4d1b19e3df6c2872.bin
+0x2f93a0:13:$pdb: collector.pdb
+0x2647c2:31:$inj1: [INJECTOR] extracted helper.exe
+0x264872:40:$inj2: [INJECTOR] copied browser data to output
+0x108fb3:15:$helper: rxinjhelper.exe
+0x268cac:23:$lsass1: [LSASS] running lss.exe
+0x268cdc:20:$lsass2: mimikatz-credentials
+0x268d07:34:$lsass3: [LSASS] dump missing (need admin?)
+0x2693eb:41:$par: waiting for all 35 collectors to complete
+0x269948:26:$dual: DUAL TRANSMISSION STRATEGY
+0x269bcb:26:$dual: DUAL TRANSMISSION STRATEGY
+0x108814:16:$fast: [DEBUG:FAST] [T=
+0x269489:36:$prep: ] Preparing forensics transmission (
+0x2694d8:14:$api: /api/forensics
+0x269ada:21:$fp: octo-fingerprint.json
+0x269686:20:$geo: GEO_BLOCKING_ENABLED
+0x108fa4:15:$lip: BRIDGE_LOCAL_IP
+0x269553:37:$meta: forensics.zipdevice_idsequencesent_at
+0x2695c5:42:$hdr: X-Device-IDX-SignatureX-CountryX-Public-IP
+BridgeAgent_Collector_Server_93_152_213_149 samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage2_4d1b19e3df6c2872.bin
+0x2694ba:14:$srv: 93.152.213.149
+0x2694d8:14:$api: /api/forensics
+0x268de0:35:$geo: ip-api.com/json/?fields=countryCode
+0x269521:18:$conn: /api/agent/connect
+BridgeAgent_RxInjHelper_ChromElevator samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage3_95b6cbcfa3d138ba.bin
+0xdd49:41:$banner: Direct Syscall-Based Reflective Hollowing
+0xdf76:48:$usage: U\x00s\x00a\x00g\x00e\x00:\x00 \x00c\x00h\x00r\x00o\x00m\x00e\x00l\x00e\x00v\x00a\x00t\x00o\x00r\x00.\x00e\x00x\x00e\x00
+0xf28a:28:$sol: Solution: Use chromelevator_
+0xf300:32:$abe1: Copilot App-Bound Encryption Key
+0xf2e0:24:$abe2: App-Bound Encryption Key
+0xf308:24:$abe2: App-Bound Encryption Key
+0xf3f0:30:$sig: __DLL_PIPE_COMPLETION_SIGNAL__
+0xf448:8:$cook: COOKIES:
+0xf65a:23:$log1: [+] Payload decrypted (
+0xf6b2:46:$log2: [+] Bootstrap entry point resolved (offset: 0x
+0xf6e8:50:$log3: Allocating memory in target process via syscall...
+0xf7d2:46:$log4: [+] Memory protection set to PAGE_EXECUTE_READ
+0xf808:37:$log5: Creating remote thread via syscall...
+0xde52:26:$log6: [+] IPC pipe established: 
+0xf4b8:44:$pipe1: c\x00h\x00r\x00o\x00m\x00e\x00.\x00s\x00y\x00n\x00c\x00.\x00%\x00u\x00.\x00%\x00u\x00.\x00%\x000\x004\x00X\x00
+0xf510:44:$pipe2: m\x00o\x00j\x00o\x00.\x00%\x00u\x00.\x00%\x00u\x00.\x00%\x000\x004\x00X\x00.\x00c\x00h\x00r\x00o\x00m\x00e\x00
+0xf568:46:$pipe3: m\x00s\x00e\x00d\x00g\x00e\x00.\x00c\x00r\x00a\x00s\x00h\x00p\x00a\x00d\x00_\x00%\x00u\x00_\x00%\x000\x004\x00X\x00
+BridgeAgent_Lss_LsassDumper samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage3_7e7df0e30b6aba86.bin
+0xfb7:5:$h_alloc: ba ec b8 83 f7
+0xfc9:7:$h_free: c7 40 38 09 c6 02 28
+0xfd8:5:$h_rvm: ba 03 81 28 a3
+0xfea:7:$h_qvm: c7 40 68 5d e8 c0 10
+0x1000:4:$h_open: 18 f7 82 4b
+0x1019:4:$h_qsi: 28 39 c2 7b
+0x102b:5:$h_qip: ba c2 5d dc 8c
+0x104c:4:$h_cf: bb 3f 16 66
+0x105e:5:$h_wf: ba b2 1d d6 e0
+0x107f:4:$h_close: 9d e6 d6 40
+0x1098:4:$h_opt: 99 ca 0d 35
+0x10b1:4:$h_adj: 6d 73 bc 2d
+0x11ac:5:$h_ldr: ba 43 6a 45 9e
+0xaa0:6:$marker: 81 3a 17 17 17 17
+0xb40:6:$marker: 81 39 17 17 17 17
+0xd8c:6:$marker: 81 38 17 17 17 17
+0xf1d:6:$marker: 81 3a 17 17 17 17
+0x110c:6:$marker: 81 3f 17 17 17 17
+0x1389:6:$marker: 81 38 17 17 17 17
+0x141a:6:$marker: 81 38 17 17 17 17
+0x14d0:6:$marker: 81 38 17 17 17 17
+0x1588:6:$marker: 81 38 17 17 17 17
+0x16e1:6:$marker: 81 38 17 17 17 17
+0x178b:6:$marker: 81 38 17 17 17 17
+0x1a19:6:$marker: 81 38 17 17 17 17
+0x1c48:6:$marker: 81 38 17 17 17 17
+0x1e56:6:$marker: 81 38 17 17 17 17
+0x2cbf:6:$marker: 81 38 17 17 17 17
+0x2f69:6:$marker: 81 38 17 17 17 17
+0x3030:6:$marker: 81 38 17 17 17 17
+0x30d9:6:$marker: 81 38 17 17 17 17
+0x3195:6:$marker: 81 38 17 17 17 17
+0x119c:6:$ntdll: 81 fa ed b0 da 1e
+0x1155:5:$djb2: ba 05 15 00 00
+0x1197:5:$djb2: ba 05 15 00 00
+0x1619:5:$djb2: ba 05 15 00 00
+0x2c1c:7:$nt_pfx: c7 47 fc 5c 3f 3f 5c
+0x2c5c:4:$dmp: .dmp
+0x2c68:4:$lss: lss.
+0x3c10:4:$mdmp: MDMP
+
+## sweep: files / (rule,file) non-match lines / match lines
+samples files=247 nonmatch=982 matches=6
+  BridgeAgent_Lss_LsassDumper samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage3_7e7df0e30b6aba86.bin
+  BridgeAgent_RxInjHelper_ChromElevator samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage3_95b6cbcfa3d138ba.bin
+  BridgeAgent_Collector_Strings samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage2_4d1b19e3df6c2872.bin
+  BridgeAgent_Collector_Server_93_152_213_149 samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/stage2_4d1b19e3df6c2872.bin
+  BridgeAgent_Collector_Strings samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/sample.bin
+  BridgeAgent_Collector_Server_93_152_213_149 samples/d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc/sample.bin
+/home/adeyimika/.local/opt files=38437 nonmatch=153748 matches=0
+/usr/lib/python3 files=5831 nonmatch=23324 matches=0
+/usr/lib/python3.14 files=1314 nonmatch=5256 matches=0
+/usr/bin files=1282 nonmatch=5128 matches=0
+# samples/ matches: each helper rule on its own file only; both collector rules on the collector
+# and on the container d2b5f4ff.../sample.bin, which begins with the collector (0xd1d2 container, plaintext).
+# The helper rules do not match the copies embedded in the collector or container (they require the
+# helper's own import table: none for lss.exe, KERNEL32+VERSION for rxinjhelper.exe); the collector rules cover those.

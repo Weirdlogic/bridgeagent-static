@@ -48,10 +48,10 @@ Full technical report: [reports/bridgeagent/2026-10-16-acb4fdd8eab4/report.md](r
 | `reports/bridgeagent/2026-10-16-acb4fdd8eab4/` | Combined report, loader notes and evidence |
 | `reports/bridgeagent/2026-10-16-c4545d48db19/` | Agent and collector notes and evidence |
 
-The YARA rules were validated: each matches its sample and none matched about
-47,000 benign files or the other lab samples. The KQL and Elastic queries come
-from static analysis and have not been tested on telemetry. There are no rules
-yet for the collector.
+The YARA rules for the loader, the agent, the collector and the collector's two
+helpers (rxinjhelper.exe and lss.exe) were validated: each matches its sample
+and none matched about 47,000 benign files or the other lab samples. The KQL and
+Elastic queries come from static analysis and have not been tested on telemetry.
 
 ## Reproduce the analysis
 

@@ -1,0 +1,29 @@
+# lss.exe (7e7df0e3...) API hash table, 0x140001bb1..0x140001dac. Hash: uppercase djb2, seed 0x1505, h = h*33 + c (32-bit),
+# loop at 0x140001d55..0x140001d95, module compare cmp edx,0x1edab0ed at 0x140001d9c. Names resolved offline by hashing
+# candidate ntdll export names with the routine below; nothing was executed.
+0x9e456a43 LdrLoadDll
+0x2dbc736d NtAdjustPrivilegesToken
+0xf783b8ec NtAllocateVirtualMemory
+0x40d6e69d NtClose
+0x66163fbb NtCreateFile
+0x1edab0ed ntdll.dll
+0x2802c609 NtFreeVirtualMemory
+0x4b82f718 NtOpenProcess
+0x350dca99 NtOpenProcessToken
+0x8cdc5dc2 NtQueryInformationProcess
+0x7bc23928 NtQuerySystemInformation
+0x10c0e85d NtQueryVirtualMemory
+0xa3288103 NtReadVirtualMemory
+0xe0d61db2 NtWriteFile
+
+## routine
+def h(s):
+    x=0x1505
+    for c in s.encode():
+        if c>=0x61: c=(c-0x20)&0xff
+        x=(x*33+c)&0xffffffff
+    return x
+T={0xf783b8ec,0x2802c609,0xa3288103,0x10c0e85d,0x4b82f718,0x7bc23928,0x8cdc5dc2,0x66163fbb,0xe0d61db2,0x40d6e69d,0x350dca99,0x2dbc736d,0x9e456a43,0x1edab0ed}
+names="ntdll.dll NtOpenProcess NtCreateFile NtWriteFile NtClose NtReadVirtualMemory NtQueryVirtualMemory NtQuerySystemInformation NtQueryInformationProcess RtlAdjustPrivilege NtAdjustPrivilegesToken NtOpenProcessToken NtAllocateVirtualMemory NtFreeVirtualMemory LdrLoadDll NtQueryInformationFile RtlInitUnicodeString NtGetNextProcess NtTerminateProcess NtDuplicateObject NtQueryObject NtSetInformationFile NtFlushBuffersFile NtDelayExecution RtlGetVersion NtQueryInformationToken NtProtectVirtualMemory LdrGetProcedureAddress RtlAllocateHeap RtlFreeHeap NtQueryDirectoryFile NtLookupPrivilegeValue LookupPrivilegeValueW RtlGetCurrentPeb NtOpenThreadToken NtImpersonateThread NtSetInformationThread NtReadFile NtCreateSection NtMapViewOfSection NtUnmapViewOfSection NtQuerySystemTime RtlCreateHeap RtlDosPathNameToNtPathName_U RtlGetFullPathName_U NtWaitForSingleObject RtlExitUserProcess NtGetNextThread NtOpenThread NtSuspendProcess NtResumeProcess NtQueryAttributesFile NtDeleteFile NtWriteVirtualMemory RtlNtStatusToDosError NtQueryPerformanceCounter RtlGetNtVersionNumbers LdrGetDllHandle NtQueryVolumeInformationFile NtCreateEvent NtSetEvent NtQueryFullAttributesFile NtCreateProcessEx NtCreateThreadEx RtlCopyMemory RtlZeroMemory memcpy memset".split()
+for n in names:
+    if h(n) in T: print(hex(h(n)),n)

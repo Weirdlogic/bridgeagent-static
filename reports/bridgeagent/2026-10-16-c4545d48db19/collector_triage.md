@@ -77,10 +77,10 @@ Inferred: a small LSASS minidump writer that resolves its APIs or syscalls witho
 - Process: an unsigned child named `rxinjhelper.exe` or `lss.exe` started from a temporary folder by another unsigned process; a browser started and immediately hollowed by it; a handle to lsass.exe from `lss.exe`.
 - Network: HTTPS POST to `/api/forensics` on 93.152.213[.]149, about 90 seconds and 5 minutes after start; a request to ip-api[.]com just before.
 - File: `lss.dmp`, `wifi_networks.txt`, `installed_browsers.txt`, `installed_software.txt`, `privileges.txt`, `processes.txt`, `system_env.txt`, `octo-fingerprint.json` in a temporary folder, then a ZIP.
-- The detection files for the agent do not cover this collector yet.
+- Rules: detections/yara/bridgeagent_collector.yar, detections/kql/bridgeagent_collector.kql, detections/elastic/bridgeagent_collector.eql and .esql (validation in evidence/yara_validation_collector.txt).
 
 ## Open items
 
 - How the loader starts the collector (the loader's FUN_140006af4 writes the leading bytes; the name and launch path for this part were not traced).
 - The `[LATERAL]` collector's sources and whether the collector authenticates with its own key.
-- YARA and hunting rules for the collector, rxinjhelper.exe and lss.exe.
+- Telemetry testing of the collector hunting queries.

@@ -1,0 +1,86 @@
+// Title:   BridgeAgent collector (collector.pdb) and its helpers rxinjhelper.exe (ChromElevator) and lss.exe (LSASS dumper)
+// Report:  reports/bridgeagent/2026-10-16-c4545d48db19/collector_triage.md
+//          reports/bridgeagent/2026-10-16-acb4fdd8eab4/report.md
+// Product: Microsoft Defender XDR advanced hunting
+// ATT&CK:  T1003.001, T1555.003, T1539, T1055.012, T1106, T1016, T1033, T1057, T1518, T1560.002, T1041, T1614
+// Status:  From static analysis. Not tested on telemetry. The server and ip-api.com were not contacted.
+// Logic:   Each branch is a separate signal and names itself in Signal. lss-lsass-access, dump-file and
+//          upload-after-geo are specific enough to alert on alone. helper-from-temp needs the unsigned-parent
+//          check to stay quiet, because "lss.exe" alone is a short, generic name.
+//          The upload path /api/forensics is inside HTTPS, so Defender sees only the address; the
+//          ip-api.com lookup is plain HTTP and can also show up as HttpConnectionInspected.
+let c2 = dynamic(["93.152.213.149"]);                         // collector 0x2694ba, same server as the agent
+let hashes = dynamic([
+    "4d1b19e3df6c28728ef181c01aea11d5d2777a95a66c84771860daac9c51856b",   // collector
+    "95b6cbcfa3d138ba741f735e46ffcefe670bed5e3bb8d0a3f66842271a1caf0e",   // rxinjhelper.exe
+    "7e7df0e30b6aba8637fb58db0a2e7a876890b872f0d0b313424d46c9299580e8",   // lss.exe
+    "d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc"]); // container (collector + agent)
+let helpers = dynamic(["rxinjhelper.exe", "lss.exe"]);
+// output files named in the collector (0x268ca0..0x2697f8); several in one folder from one process is the tell
+let outfiles = dynamic(["lss.dmp", "octo-fingerprint.json", "wifi_networks.txt", "installed_browsers.txt",
+                        "installed_software.txt", "privileges.txt", "processes.txt", "system_env.txt"]);
+let browsers = dynamic(["chrome.exe", "msedge.exe", "brave.exe"]);
+let lookback = 7d;
+// SHA1s with a valid signature anywhere in the tenant; absence is treated as unsigned
+let signed = DeviceFileCertificateInfo
+    | where Timestamp > ago(30d) and IsSigned == 1
+    | distinct SHA1;
+union
+// 1. rxinjhelper.exe or lss.exe started from a temp folder by an unsigned parent
+//    (written by the collector: "[INJECTOR] extracted helper.exe", "[LSASS] running lss.exe...", 90 s timeout)
+(DeviceProcessEvents
+ | where Timestamp > ago(lookback)
+ | where FileName in~ (helpers) or SHA256 in (hashes)
+ | where FolderPath has @"\Temp\" or SHA256 in (hashes)
+ | where InitiatingProcessSHA1 !in (signed)
+ | extend Signal = "helper-from-temp"),
+// 2. Browser started by rxinjhelper.exe (ChromElevator hollows a fresh browser process with direct syscalls)
+(DeviceProcessEvents
+ | where Timestamp > ago(lookback)
+ | where InitiatingProcessFileName =~ "rxinjhelper.exe" or InitiatingProcessSHA256 in (hashes)
+ | where FileName in~ (browsers)
+ | extend Signal = "helper-browser-hollow"),
+// 3. lss.exe opening or reading lsass.exe (lss.exe resolves NtOpenProcess and NtReadVirtualMemory by hash)
+(DeviceEvents
+ | where Timestamp > ago(lookback)
+ | where ActionType in ("OpenProcessApiCall", "ReadProcessMemoryApiCall")
+ | where FileName =~ "lsass.exe"
+ | where InitiatingProcessFileName =~ "lss.exe" or InitiatingProcessSHA256 in (hashes)
+ | extend Signal = "lss-lsass-access"),
+// 4. lss.dmp anywhere, or the collector's fingerprint file
+(DeviceFileEvents
+ | where Timestamp > ago(lookback)
+ | where ActionType in ("FileCreated", "FileModified", "FileRenamed")
+ | where FileName in~ ("lss.dmp", "octo-fingerprint.json") or SHA256 in (hashes)
+ | extend Signal = "dump-file"),
+// 5. Three or more of the collector's output files written by one process into one folder within 10 minutes
+(DeviceFileEvents
+ | where Timestamp > ago(lookback)
+ | where ActionType in ("FileCreated", "FileModified")
+ | where FileName in~ (outfiles)
+ | extend Folder = tostring(parse_path(FolderPath).DirectoryPath), Window = bin(Timestamp, 10m)
+ | summarize Timestamp = min(Timestamp), Files = make_set(FileName), FileCount = dcount(FileName)
+     by DeviceId, DeviceName, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, Folder, Window
+ | where FileCount >= 3
+ | extend Signal = "collector-temp-files", FileName = strcat_array(Files, ","), FolderPath = Folder),
+// 6. ip-api.com country lookup followed by a connection to the upload server from the same process
+//    (hxxp://ip-api[.]com/json/?fields=countryCode, then HTTPS POST /api/forensics at about T=90s and T=300s)
+(DeviceNetworkEvents
+ | where Timestamp > ago(lookback)
+ | where RemoteUrl has "ip-api.com"
+ | project GeoTime = Timestamp, DeviceId, InitiatingProcessId, InitiatingProcessFileName
+ | join kind=inner (
+     DeviceNetworkEvents
+     | where Timestamp > ago(lookback)
+     | where RemoteIP in (c2) and RemotePort == 443
+   ) on DeviceId, InitiatingProcessId, InitiatingProcessFileName
+ | where Timestamp between (GeoTime .. GeoTime + 10m)
+ | extend Signal = "upload-after-geo"),
+// 7. Any connection to the server (the agent uses it too)
+(DeviceNetworkEvents
+ | where Timestamp > ago(lookback)
+ | where RemoteIP in (c2)
+ | extend Signal = "server-connection")
+| project Timestamp, DeviceName, Signal, ActionType, FileName, FolderPath, ProcessCommandLine, SHA256,
+          InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessSHA256, RemoteIP, RemotePort, RemoteUrl
+| order by DeviceName asc, Timestamp asc

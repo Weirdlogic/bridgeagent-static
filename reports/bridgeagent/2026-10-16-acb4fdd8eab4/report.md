@@ -400,8 +400,14 @@ keeps hands-on access afterwards. Both point at one server.
 | `detections/elastic/bridgeagent_byovd_chain.eql` | Elastic EQL | symsrv curl, then driver from a user folder, then curl into `C:\Users\Public`; plus the curl step alone | not tested on telemetry |
 | `detections/elastic/bridgeagent_2026-10_iocs.esql` | ES\|QL | hashes, driver, download server, symsrv curl | not tested on telemetry |
 | `detections/elastic/bridgeagent_backdoor.eql`, `.esql` | Elastic | Run key by reg.exe, supervisor and runtime processes, children, C2 | not tested on telemetry |
+| `detections/yara/bridgeagent_collector.yar`, `BridgeAgent_Collector_Strings`, `_Collector_Server_93_152_213_149` | YARA | collector log, upload and helper strings; the upload server next to `/api/forensics` and the ip-api lookup | 1/1 collector each; also match the container, which begins with the collector |
+| same file, `BridgeAgent_RxInjHelper_ChromElevator` | YARA | the standalone rxinjhelper.exe: ChromElevator banner and usage, App-Bound key strings, pipe signal, Chromium-like pipe names, two-DLL import table | 1/1 rxinjhelper.exe; other ChromElevator builds will also match |
+| same file, `BridgeAgent_Lss_LsassDumper` | YARA | the standalone lss.exe: no imports, ntdll API hash table as instruction immediates, djb2 loop, `\??\`/`lss.`/`.dmp` immediates | 1/1 lss.exe |
+| benign corpus, collector file | n/a | `~/.local/opt`, system Python library, `/usr/bin`, the other 243 files in samples/ | 0 hits on 46,864 files outside samples/ and on the other lab samples (`evidence/yara_validation_collector.txt` in the agent report folder) |
+| `detections/kql/bridgeagent_collector.kql` | Defender XDR | rxinjhelper.exe or lss.exe from a temp folder with an unsigned parent, browser started by rxinjhelper.exe, lsass opened or read by lss.exe, `lss.dmp` and `octo-fingerprint.json`, three or more collector output files in one folder, ip-api.com lookup then a connection to the server from the same process | not tested on telemetry |
+| `detections/elastic/bridgeagent_collector.eql`, `.esql` | Elastic | the same signals; EQL as five queries (unsigned parent to helper sequence, lsass API access, files, browser child, geo lookup then upload), ES\|QL as a per-process score | not tested on telemetry |
 
-Gap: no rules yet for the collector, rxinjhelper.exe or lss.exe.
+Gap: the collector, rxinjhelper.exe and lss.exe now have YARA, KQL and Elastic rules, but the hunting queries have not been run on real telemetry, and the KQL and Elastic queries rely on the default file names (`rxinjhelper.exe`, `lss.exe`, `lss.dmp`), which a rebuild can change. The YARA code rule for lss.exe is the part most likely to survive a rename.
 
 The step most worth alerting on is the symbol download. It happens before the
 driver loads, so the EDR still reports it, and curl.exe has no legitimate
@@ -460,21 +466,6 @@ address. Ontinue's report covers the same loader family under another name.
 | Ontinue, Rhys Downing, "Lunex unmasked: a new information stealer deployed through BYOVD" (2026-09-24) | the LunexLoader / Lunex stealer chain: MSI delivery via a fake CAPTCHA, the loader's PDFWKRNL.sys BYOVD with an AES-256-GCM encrypted driver, PDB download with a symsrv User-Agent, notify-routine removal for a 20-driver list, PEB masquerade, SeLoadDriverPrivilege, COM elevation; payload `psychedeliclove.exe` from 107.175.82[.]242:9000 | confirms the BYOVD core on a later build. Ontinue describes the encrypted driver as an overlay; in this build it is in .rdata and the overlay is filler. Adds: exact IOCTL buffer layout checked in the driver, object-callback and registry-callback wiping (whole list), MsMpEng PPL strip and token swap, Defender WMI exclusions, the command-line options, the `0xd1d2` container, and a different payload |
 | MalwareBazaar, Triage, ANY.RUN | hashes, tags, the "dropped by" link from loader to agent | the tags "stealer" and "rust" on the loader are explained by the payload; the loader itself is neither |
 | none found | the Bridge Agent RAT: C2 protocol, Ed25519 auth, job set, Backstage browser takeover, surveillance collectors, persistence; the companion collector with ChromElevator and the LSASS dumper | new |
-
-## Open questions
-
-1. The name and launch path the loader gives the collector part of the
-   container (`FUN_140006af4`), and what the u16 value 3 in the trailer means.
-2. Which CMSTPLUA method the loader calls after `CoGetObject`, and its exact
-   relaunch command.
-3. How a fresh agent gets its `enrollment_token`, and the key that verifies CA
-   recovery documents.
-4. The collector's `[LATERAL]` sources, whether its ZIP is encrypted, and how
-   it gets a device identity for `X-Signature`.
-5. What the loader's VMware strings gate, and the "ip-check" behaviour
-   ANY.RUN reports.
-6. Detections for the collector and its two helpers, and telemetry testing
-   for every query above.
 
 ## Evidence files
 

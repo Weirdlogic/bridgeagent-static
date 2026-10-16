@@ -1,0 +1,62 @@
+/*
+  Title:   BridgeAgent collector - rxinjhelper.exe or lss.exe started from a temp folder by an unsigned parent
+  Report:  reports/bridgeagent/2026-10-16-c4545d48db19/collector_triage.md
+  Product: Elastic Security (EQL) on Elastic Defend data
+  ATT&CK:  T1003.001, T1555.003, T1055.012
+  Status:  DRAFT - from static analysis; not validated on telemetry.
+           The collector (collector.pdb, 4d1b19e3...) writes its two helpers into its temporary folder and
+           runs them: "[INJECTOR] extracted helper.exe" (rxinjhelper.exe, 90 s timeout) and
+           "[LSASS] running lss.exe..." (expects lss.dmp). Collector strings 0x2647c2, 0x268ca0.
+*/
+sequence by host.id with maxspan=10m
+  [process where host.os.type == "windows" and event.type == "start" and
+     (process.code_signature.exists == false or process.code_signature.trusted == false)] by process.entity_id
+  [process where host.os.type == "windows" and event.type == "start" and
+     (process.name : ("rxinjhelper.exe", "lss.exe") or
+      process.hash.sha256 : ("95b6cbcfa3d138ba741f735e46ffcefe670bed5e3bb8d0a3f66842271a1caf0e",
+                             "7e7df0e30b6aba8637fb58db0a2e7a876890b872f0d0b313424d46c9299580e8")) and
+     process.executable : ("?:\\Users\\*\\AppData\\Local\\Temp\\*", "?:\\Windows\\Temp\\*", "*\\Temp\\*")] by process.parent.entity_id
+
+/*
+  Second query: lss.exe opening lsass.exe. lss.exe has no import table and resolves NtOpenProcess,
+  NtReadVirtualMemory, NtQueryVirtualMemory, NtCreateFile and NtWriteFile from ntdll by an uppercase
+  djb2 hash (lss.exe 0x140001bb1..0x140001dac, evidence/lss_api_hashes.txt). Elastic Defend API events
+  report the handle request; on Sysmon data use the commented variant (Event ID 10).
+*/
+api where host.os.type == "windows" and
+  process.Ext.api.name : ("OpenProcess", "NtOpenProcess", "ReadProcessMemory", "NtReadVirtualMemory") and
+  Target.process.name : "lsass.exe" and
+  (process.name : "lss.exe" or
+   process.hash.sha256 == "7e7df0e30b6aba8637fb58db0a2e7a876890b872f0d0b313424d46c9299580e8")
+
+/* Sysmon variant:
+any where event.code == "10" and winlog.event_data.TargetImage : "?:\\Windows\\System32\\lsass.exe" and
+  winlog.event_data.SourceImage : "*\\lss.exe"
+*/
+
+/*
+  Third query: the dump and the collector's own files. lss.dmp is the LSASS dump; octo-fingerprint.json
+  is written at start; the rest are collector outputs (collector 0x268ca0..0x2697f8).
+*/
+file where host.os.type == "windows" and event.type in ("creation", "change") and
+  (file.name : ("lss.dmp", "octo-fingerprint.json") or
+   (file.name : ("wifi_networks.txt", "installed_browsers.txt", "installed_software.txt", "privileges.txt",
+                 "processes.txt", "system_env.txt") and file.path : "*\\Temp\\*"))
+
+/*
+  Fourth query: browser started by rxinjhelper.exe. ChromElevator starts a fresh Chrome, Edge or Brave
+  process and hollows it with direct syscalls to read the App-Bound Encryption key.
+*/
+process where host.os.type == "windows" and event.type == "start" and
+  process.parent.name : "rxinjhelper.exe" and process.name : ("chrome.exe", "msedge.exe", "brave.exe")
+
+/*
+  Fifth query: country lookup then upload. The collector asks hxxp://ip-api[.]com/json/?fields=countryCode
+  and posts the ZIP over HTTPS to /api/forensics on 93.152.213[.]149 at about T=90s and T=300s.
+  The path is inside TLS, so the sequence uses the destination address.
+*/
+sequence by host.id, process.entity_id with maxspan=10m
+  [any where host.os.type == "windows" and event.category in ("network", "dns") and
+     (dns.question.name : "ip-api.com" or destination.domain : "ip-api.com")]
+  [network where host.os.type == "windows" and
+     destination.ip == "93.152.213.149" and destination.port == 443]

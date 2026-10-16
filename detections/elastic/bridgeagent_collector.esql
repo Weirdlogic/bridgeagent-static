@@ -1,0 +1,41 @@
+// Title:   BridgeAgent collector, rxinjhelper.exe and lss.exe - hashes, server, dump, output files
+// Report:  reports/bridgeagent/2026-10-16-c4545d48db19/collector_triage.md
+// Product: Elastic ES|QL on Elastic Defend data
+// Status:  From static analysis; not tested on telemetry. The server and ip-api.com were NOT contacted.
+//          Groups per process so that several weak signals (three output files, a helper start, a
+//          country lookup) add up. score >= 2 is worth a look; lss.dmp, lsass access by lss.exe or a
+//          known hash are enough alone.
+FROM logs-endpoint.events.*
+| WHERE host.os.type == "windows"
+| EVAL hit_hash = CASE(
+    process.hash.sha256 IN ("4d1b19e3df6c28728ef181c01aea11d5d2777a95a66c84771860daac9c51856b",
+                            "95b6cbcfa3d138ba741f735e46ffcefe670bed5e3bb8d0a3f66842271a1caf0e",
+                            "7e7df0e30b6aba8637fb58db0a2e7a876890b872f0d0b313424d46c9299580e8",
+                            "d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc")
+      OR file.hash.sha256 IN ("4d1b19e3df6c28728ef181c01aea11d5d2777a95a66c84771860daac9c51856b",
+                              "95b6cbcfa3d138ba741f735e46ffcefe670bed5e3bb8d0a3f66842271a1caf0e",
+                              "7e7df0e30b6aba8637fb58db0a2e7a876890b872f0d0b313424d46c9299580e8",
+                              "d2b5f4ff9ccf98b4ebff54c8bf85e242bcf2b6387c10c451fe8c21d73c5d24fc"), 1, 0),
+       hit_server = CASE(destination.ip == "93.152.213.149", 1, 0),
+       hit_geo    = CASE(destination.domain == "ip-api.com" OR dns.question.name == "ip-api.com", 1, 0),
+       hit_helper = CASE(event.category == "process" AND event.type == "start"
+                         AND process.name IN ("rxinjhelper.exe", "lss.exe")
+                         AND process.executable LIKE "*\\Temp\\*", 1, 0),
+       hit_lsass  = CASE(event.category == "api" AND process.name == "lss.exe"
+                         AND Target.process.name == "lsass.exe", 1, 0),
+       hit_dump   = CASE(file.name IN ("lss.dmp", "octo-fingerprint.json"), 1, 0),
+       out_file   = CASE(file.name IN ("wifi_networks.txt", "installed_browsers.txt", "installed_software.txt",
+                                       "privileges.txt", "processes.txt", "system_env.txt"), file.name, NULL)
+| WHERE hit_hash + hit_server + hit_geo + hit_helper + hit_lsass + hit_dump > 0 OR out_file IS NOT NULL
+// a helper start is reported by the helper's parent; fold it onto the parent so it joins the collector's own events
+| EVAL proc = CASE(hit_helper == 1, process.parent.entity_id, process.entity_id),
+       proc_name = CASE(hit_helper == 1, process.parent.name, process.name)
+| STATS first = MIN(@timestamp), last = MAX(@timestamp),
+        hashes = MAX(hit_hash), server = MAX(hit_server), geo = MAX(hit_geo), helper = MAX(hit_helper),
+        lsass = MAX(hit_lsass), dump = MAX(hit_dump), out_files = COUNT_DISTINCT(out_file),
+        names = VALUES(proc_name), children = VALUES(process.name)
+    BY host.name, proc
+| EVAL score = hashes * 3 + lsass * 3 + dump * 3 + helper + CASE(server == 1 AND geo == 1, 2, server)
+             + CASE(out_files >= 3, 2, 0)
+| WHERE score >= 2
+| SORT score DESC, last DESC
